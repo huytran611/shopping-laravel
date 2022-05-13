@@ -5,6 +5,7 @@ use App\Http\Livewire\Account;
 use App\Http\Livewire\AccountRegister;
 use App\Http\Livewire\Admin\AdminDashboardComponent;
 use App\Http\Livewire\CartComponent;
+use App\Http\Livewire\CategoryComponent;
 use App\Http\Livewire\DetailsComponent;
 use App\Http\Livewire\FemaleShop;
 use App\Http\Livewire\HomeComponent;
@@ -64,6 +65,8 @@ Route::get('/women', FemaleShop::class);
 Route::get('/kid',KidShop::class);
 
 Route::get('/accessories',AccesoriesShop::class);
+
+Route::get('/product-category/{category_slug}',CategoryComponent::class)->name('product.category');
 
 //--------------------------------------
 

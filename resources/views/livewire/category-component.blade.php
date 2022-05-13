@@ -2,7 +2,7 @@
     <div class="container">
         <div class="head-products">
         <h2>
-            SẢN PHẨM MỚI
+            {{$category_name}}
         </h2>
         </div>
         <div class="wrap-shop-control">

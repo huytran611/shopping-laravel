@@ -10,9 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;500;600&family=Open+Sans:wght@700&display=swap" rel="stylesheet">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     @livewireStyles 
 </head>
 <body>
@@ -32,9 +30,7 @@
                     <li><a href="/accessories">PHỤ KIỆN</a></li>
                 </ul>
             </nav>
-            <div class="searchbar">
-                <input type="text" placeholder="Tìm kiếm..">
-            </div>
+            @livewire('header-search-component')
             @if(Route::has('login'))
                 @auth
                     @if(Auth::user()->utype === 'ADM')
