@@ -17,7 +17,7 @@
                     <div class="cart-info">
                         <img src="{{asset('assets/images')}}/{{$item->model->image}}" alt="{{$item->model->name}}">
                         <div>
-                            <a href="{{route('product.details',['slug'=>$item->model->slug])}}"><p>${{$item->model->name}}</p></a>
+                            <a href="{{route('product.details',['slug'=>$item->model->slug])}}"><p>{{$item->model->name}}</p></a>
                             <small>{{$item->model->regular_price}}</small>
                             <br>
                             <a href="" wire:click.prevent="delete('{{$item->rowId}}')">Xóa</a>

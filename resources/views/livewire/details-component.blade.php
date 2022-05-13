@@ -24,28 +24,14 @@
             <h1>{{$product->name}}</h1>
             <h4>{{$product->regular_price}}</h4>
             <select name="" id="">
-                <option value="">Select Size</option>
-                <option value="">XXL</option>
-                <option value="">XL</option>
-                <option value="">L</option>
-                <option value="">M</option>
-                <option value="">S</option>
+                <option value="">Chọn Size</option>
+                @foreach ($product_size as $p_size)
+                    <option value="">{{$p_size->size}}</option>
+                @endforeach
             </select>
-            <input type="number" value="1">
-            <a href="" onclick="popup()" class="btn" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->regular_price}})" 
-                                                    wire:click.prevent="increaseQuantity('{{$product->rowId}}">Thêm vào giỏ</a>
-            @if (Session::has('success_message'))
-                <div class="popup">
-                    <span id="myPopup">Đã thêm tổng {{$product->qty}} sản phẩm</span>
-                </div>
-                <script>
-                    function popup(){
-                        var popup = document.getElementById("myPopup");
-                        popup.classList.toggle("show");
-                    }    
-                </script>
-            @endif
-            <h3>Product Details</h3>
+            <input class="input-cart" type="text" value="1">
+            <a href="" class="btn" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->regular_price}})">Thêm vào giỏ</a>
+            <h3>Thông tin sản phẩm</h3>
             <p>{{$product->short_description}}</p>
         </div>
     </div>
@@ -86,5 +72,7 @@ smallimg[2].onclick = function(){
 smallimg[3].onclick = function(){
     productimg.src = smallimg[3].src;
 }
+
+
 </script>
 </div>
