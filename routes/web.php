@@ -12,6 +12,7 @@ use App\Http\Livewire\HomeComponent;
 use App\Http\Livewire\KidShop;
 use App\Http\Livewire\MaleShop;
 use App\Http\Livewire\NewsShop;
+use App\Http\Livewire\SearchComponent;
 use App\Http\Livewire\User\UserDashboardComponent;
 use Illuminate\Support\Facades\Route;
 
@@ -67,6 +68,8 @@ Route::get('/kid',KidShop::class);
 Route::get('/accessories',AccesoriesShop::class);
 
 Route::get('/product-category/{category_slug}',CategoryComponent::class)->name('product.category');
+
+Route::get('/search',SearchComponent::class)->name('product.search');
 
 //--------------------------------------
 

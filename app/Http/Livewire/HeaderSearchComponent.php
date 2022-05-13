@@ -14,13 +14,13 @@ class HeaderSearchComponent extends Component
 
     public function mount()
     {
-        $this->product_cat = 'All Category';
+        $this->product_cat = 'Thể Loại';
         $this->fill(request()->only('search','product_cat','product_cat_id'));
     }
 
     public function render()
     {
         $categories = Category::all();
-        return view('livewire.header-search-component',['categories'=>$categories]);
+        return view('livewire.header-search-component',['categories'=>$categories])->layout('homepage.index');
     }
 }

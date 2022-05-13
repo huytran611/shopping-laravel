@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;500;600&family=Open+Sans:wght@700&display=swap" rel="stylesheet">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     @livewireStyles 
 </head>
 <body>
@@ -121,6 +121,7 @@ function menutoggle(){
 }
 </script>
 <script src="{{ asset('assets/js/scripts.js')}}"></script>
+<script src="{{ asset('assets/js/functions.js')}}"></script>
 @livewireScripts
 </body>
 </html>
