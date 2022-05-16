@@ -7,6 +7,7 @@ jQuery(document).ready(function($) {
         var sm   = document.getElementsByTagName('script')[ 0 ];
         sm.parentNode.insertBefore(wfm, sm);
     }
+	
     var MERCADO_JS = {
     	init: function(){
     		this.mercado_chosen();
@@ -37,6 +38,7 @@ jQuery(document).ready(function($) {
             this.mercado_sticky_menu();
 		},
 
+		
     	mercado_product_slider: function(){
     		if($(".product-gallery").length > 0){
     			$('.product-gallery').flexslider({

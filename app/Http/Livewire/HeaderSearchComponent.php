@@ -21,6 +21,6 @@ class HeaderSearchComponent extends Component
     public function render()
     {
         $categories = Category::all();
-        return view('livewire.header-search-component',['categories'=>$categories])->layout('homepage.index');
+        return view('livewire.header-search-component',['categories'=>$categories]);
     }
 }

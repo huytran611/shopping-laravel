@@ -25,9 +25,10 @@
             <h4>{{$product->regular_price}}</h4>
             <select name="" id="">
                 <option value="">Chọn Size</option>
-                @foreach ($product_size as $p_size)
+               @foreach ($size as $p_size)
                     <option value="">{{$p_size->size}}</option>
                 @endforeach
+                
             </select>
             <input class="input-cart" type="text" value="1">
             <a href="" class="btn" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->regular_price}})">Thêm vào giỏ</a>

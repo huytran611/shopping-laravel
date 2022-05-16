@@ -1,28 +1,18 @@
 <div>
     <div class="container">
-        <div class="head-products">
-        <h2>
-            SẢN PHẨM MỚI
-        </h2>
+        <div >
+        <h4 style="padding-top:50px">
+            Kết quả cho từ khóa: "{{$search}}"
+        </h4>
         </div>
         <div class="wrap-shop-control">
-						<div>
-							<label for="menu-toggle">Thể loại</label>
-                            <input type="checkbox" id="menu-toggle"/>
-                            <ul id="menu">
-                                @foreach ($categories as $category)
-                                <li><a href="{{route('product.category',['category_slug'=>$category->slug])}}">{{$category->name}}</a></li>
-                                @endforeach
-                            </ul>
-                            
-						</div>
             <h1 class="shop-title">Sắp xếp</h1>
             <h1 class="shop-title" style="margin-left:1030px">Hiển thị</h1>
 
             <div class="wrap-right">
 
                 <div class="sort-item orderby ">
-                    <select name="orderby" class="use-chosen" wire:model="sorting">
+                    <select name="orderby" wire:model="sorting">
                         <option value="default" selected="selected">Sắp xếp mặc định</option>
                         <option value="date">Sắp xếp theo đồ mới nhất</option>
                         <option value="price">Sắp xếp theo giá: từ thấp -> cao</option>
@@ -31,7 +21,7 @@
                 </div>
 
                 <div class="sort-item product-per-page">
-                    <select name="post-per-page" class="use-chosen" wire:model="pagesize">
+                    <select name="post-per-page" wire:model="pagesize">
                         <option value="12" selected="selected">12 sản phẩm</option>
                         <option value="16">16 sản phẩm</option>
                         <option value="18">18 sản phẩm</option>
@@ -73,7 +63,7 @@
             @endforeach
         </div>
         @else 
-            <p>Không tồn tại sản phẩm</p>
+            <p style="padding:100px;text-align:center">Không tồn tại sản phẩm</p>
         @endif
         <div class="pagination">
             {{$products->links('vendor.pagination.bootstrap-5')}}

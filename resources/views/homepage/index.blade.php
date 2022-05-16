@@ -10,14 +10,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;500;600&family=Open+Sans:wght@700&display=swap" rel="stylesheet">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
     @livewireStyles 
 </head>
 <body>
     <div class="header">
         <div class="navbar">
             <div class="logo">
-                <a href="/"><img src="{{asset('assets/images/logo.png')}}" alt="" width="125px"></a>
+                <a href="/"><img src="{{asset('assets/images/logo.png')}}" alt="" width="90px"></a>
             </div>
             <nav>
                 <ul id="MenuItems">
@@ -64,14 +64,18 @@
            
                 @endif
             @endif
-            <a href="/cart"><img src="{{asset('assets/images/cart.png')}}" class="cart-icon" id="cart" width="30px" height="30px"><span class="badge">3</span></a>
+            <a href="/cart"><img src="{{asset('assets/images/cart.png')}}" class="cart-icon" id="cart" width="30px" height="30px"></a>
             <img src="{{asset('assets/images/menu.png')}}" class="menu-icon" alt=""
             onclick="menutoggle()">
-            
-
         </div>
     </div>
+
+{{-- for ->layout('homepage.index')--}}
+
     {{$slot}}
+
+
+
     <div class="footer">
         <div class="container">
             <div class="row">
@@ -106,20 +110,7 @@
             <p class="copyright">Copyright 2022 - by Huy Tran </p>
         </div>
     </div>
-<script>
-    var MenuItems = document.getElementById("MenuItems");
-MenuItems.style.maxHeight = "0px";
-
-function menutoggle(){
-    if(MenuItems.style.maxHeight == "0px")
-    {
-        MenuItems.style.maxHeight = "200px";
-    }
-    else{
-        MenuItems.style.maxHeight = "0px";
-    }
-}
-</script>
+<script src="{{ asset('assets/js/jquery-1.12.4.minb8ff.js')}}"></script>
 <script src="{{ asset('assets/js/scripts.js')}}"></script>
 <script src="{{ asset('assets/js/functions.js')}}"></script>
 @livewireScripts

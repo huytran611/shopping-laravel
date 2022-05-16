@@ -1,20 +1,31 @@
 //Image Slider
-const productContainers = [...document.querySelectorAll('.product-container')];
-const nxtBtn = [...document.querySelectorAll('.nxt-btn')];
-const preBtn = [...document.querySelectorAll('.pre-btn')];
+var slideIndex = 1;
+showSlides(slideIndex);
 
-productContainers.forEach((item, i) => {
-    let containerDimensions = item.getBoundingClientRect();
-    let containerWidth = containerDimensions.width;
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
 
-    nxtBtn[i].addEventListener('click', () => {
-        item.scrollLeft += 0.25*containerWidth;
-    })
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
 
-    preBtn[i].addEventListener('click', () => {
-        item.scrollLeft -= 0.25 * containerWidth;
-    })
-})
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
 
 //Menu phone screen
 var MenuItems = document.getElementById("MenuItems");
@@ -23,9 +34,10 @@ MenuItems.style.maxHeight = "0px";
 function menutoggle(){
     if(MenuItems.style.maxHeight == "0px")
     {
-        MenuItems.style.maxHeight = "200px";
+        MenuItems.style.maxHeight = "300px";
     }
     else{
         MenuItems.style.maxHeight = "0px";
     }
 }
+

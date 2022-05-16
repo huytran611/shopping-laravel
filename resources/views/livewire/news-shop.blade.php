@@ -5,23 +5,21 @@
             SẢN PHẨM MỚI
         </h2>
         </div>
+        <div>
+            <label for="menu-toggle">Thể loại</label>
+            <input type="checkbox" id="menu-toggle"/>
+            <ul id="menu" style="max-width:100px;heigh:100%">
+                @foreach ($categories as $category)
+                    <li ><a href="{{route('product.category',['category_slug'=>$category->slug])}}">{{$category->name}}</a></li>
+                @endforeach
+            </ul>
+            
+        </div>
         <div class="wrap-shop-control">
-						<div>
-							<label for="menu-toggle">Thể loại</label>
-                            <input type="checkbox" id="menu-toggle"/>
-                            <ul id="menu">
-                                @foreach ($categories as $category)
-                                <li><a href="{{route('product.category',['category_slug'=>$category->slug])}}">{{$category->name}}</a></li>
-                                @endforeach
-                            </ul>
-                            
-						</div>
-            <h1 class="shop-title">Sắp xếp</h1>
-            <h1 class="shop-title" style="margin-left:1030px">Hiển thị</h1>
-
             <div class="wrap-right">
 
                 <div class="sort-item orderby ">
+                    <h1 class="shop-title">Sắp xếp</h1>
                     <select name="orderby" class="use-chosen" wire:model="sorting">
                         <option value="default" selected="selected">Sắp xếp mặc định</option>
                         <option value="date">Sắp xếp theo đồ mới nhất</option>
@@ -29,8 +27,9 @@
                         <option value="price-desc">Sắp xếp theo giá: từ cao -> thấp</option>
                     </select>
                 </div>
-
+            
                 <div class="sort-item product-per-page">
+                    <h1 class="shop-title">Hiển thị</h1>
                     <select name="post-per-page" class="use-chosen" wire:model="pagesize">
                         <option value="12" selected="selected">12 sản phẩm</option>
                         <option value="16">16 sản phẩm</option>
@@ -76,4 +75,5 @@
             {{$products->links('vendor.pagination.bootstrap-5')}}
         </div>
     </div>
+    
 </div>
