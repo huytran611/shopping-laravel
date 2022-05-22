@@ -26,7 +26,6 @@ class CategoryComponent extends Component
     public function mount($category_slug)
     {
         $this->sorting = "default";
-        $this->pagesize = 12;
         $this->category_slug = $category_slug;
     }
 
@@ -37,18 +36,18 @@ class CategoryComponent extends Component
         $category_name = $category->name;
         if($this->sorting == 'date')
         {
-            $products = Product::where('category_id',$category_id)->orderBy('created_at','DESC')->paginate($this->pagesize);
+            $products = Product::where('category_id',$category_id)->orderBy('created_at','DESC')->get();
         }
         else if($this->sorting == 'price')
         {
-            $products = Product::where('category_id',$category_id)->orderBy('regular_price','ASC')->paginate($this->pagesize);
+            $products = Product::where('category_id',$category_id)->orderBy('regular_price','ASC')->get();
         }
         else if($this->sorting == 'price-desc')
         {
-            $products = Product::where('category_id',$category_id)->orderBy('regular_price','DESC')->paginate($this->pagesize);
+            $products = Product::where('category_id',$category_id)->orderBy('regular_price','DESC')->get();
         }
         else{
-            $products = Product::where('category_id',$category_id)->paginate($this->pagesize);
+            $products = Product::where('category_id',$category_id)->get();
         }
 
         $categories = Category::all();

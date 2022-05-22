@@ -5,68 +5,40 @@
             Kết quả cho từ khóa: "{{$search}}"
         </h4>
         </div>
-        <div class="wrap-shop-control">
-            <h1 class="shop-title">Sắp xếp</h1>
-            <h1 class="shop-title" style="margin-left:1030px">Hiển thị</h1>
-
-            <div class="wrap-right">
-
-                <div class="sort-item orderby ">
-                    <select name="orderby" wire:model="sorting">
-                        <option value="default" selected="selected">Sắp xếp mặc định</option>
-                        <option value="date">Sắp xếp theo đồ mới nhất</option>
-                        <option value="price">Sắp xếp theo giá: từ thấp -> cao</option>
-                        <option value="price-desc">Sắp xếp theo giá: từ cao -> thấp</option>
-                    </select>
-                </div>
-
-                <div class="sort-item product-per-page">
-                    <select name="post-per-page" wire:model="pagesize">
-                        <option value="12" selected="selected">12 sản phẩm</option>
-                        <option value="16">16 sản phẩm</option>
-                        <option value="18">18 sản phẩm</option>
-                        <option value="21">21 sản phẩm</option>
-                        <option value="24">24 sản phẩm</option>
-                        <option value="30">30 sản phẩm</option>
-                        <option value="32">32 sản phẩm</option>
-                    </select>
-                </div>
+        <nav class="product-filter">
+          
+            <div class="sort">
+          
+              <div class="collection-sort">
+                <h4 >Sắp xếp theo:</h4>
+                <select wire:model="sorting" style="width:150px;">
+                    <option value="default" selected="selected">Mặc định</option>
+                    <option value="date">Mới nhất</option>
+                    <option value="price">Giá: thấp -> cao</option>
+                    <option value="price-desc">Giá: cao -> thấp</option>
+                </select>
+              </div>
+          
             </div>
-        </div><!--end wrap shop control-->
+          
+        </nav>
         @if($products->count() > 0)
-        <div class="row">
+        <div class="gallery">
             @foreach ($products as $product)
-            <div class="">
-                <div class="product-card">
-                    <div class="product-image">
-                        {{--<span class="discount-tag"></span>--}}
-                        <a href="{{route('product.details',['slug'=>$product->slug])}}">
-                            <img src="{{asset('assets/images')}}/{{$product->image}}" style="height: 400px;" alt="{{$product->name}}">
-                        </a>
-                        <div>
-                            <button class="card-btn" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->regular_price}})">Thêm vào giỏ</button> 
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <a href="{{route('product.details',['slug'=>$product->slug])}}">
-                            <h5 class="product-brand">{{$product->name}}</h5>
-                        </a>
-                        <p class="product-short-description">{{$product->short_description}}</p>
-                        <div class="price">
-                            <h5>
-                                {{$product->regular_price}}</span><span class="actual-price">{{$product->sale_price}}</span>
-                            </h5>
-                        </div>
-                    </div>
-                </div>
+            <div class="content">
+                  <a href="{{route('product.details',['slug'=>$product->slug])}}">
+                    <img src="{{asset('assets/images')}}/{{$product->image}}" style="height: 400px;" alt="{{$product->name}}">
+                  </a>
+                  <a href="{{route('product.details',['slug'=>$product->slug])}}">
+                    <h3 class="product-brand">{{$product->name}}</h3>
+                </a>
+                <h3>${{$product->regular_price}}</span><span class="actual-price">{{$product->sale_price}}</span></h3>
+                <button class="buy-1" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->regular_price}})">Buy Now</button>
             </div>
             @endforeach
         </div>
         @else 
             <p style="padding:100px;text-align:center">Không tồn tại sản phẩm</p>
         @endif
-        <div class="pagination">
-            {{$products->links('vendor.pagination.bootstrap-5')}}
-        </div>
     </div>
 </div>

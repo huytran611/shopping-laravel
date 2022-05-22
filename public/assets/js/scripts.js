@@ -1,31 +1,33 @@
-//Image Slider
-var slideIndex = 1;
-showSlides(slideIndex);
 
-function plusSlides(n) {
-  showSlides(slideIndex += n);
+// Brands Slider
+
+$(document).ready(function(){
+  $('.customer-logos').slick({
+      slidesToShow: 6,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 1500,
+      arrows: false,
+      dots: false,
+      pauseOnHover: false,
+      responsive: [{
+          breakpoint: 768,
+          settings: {
+              slidesToShow: 4
+          }
+      }, {
+          breakpoint: 520,
+          settings: {
+              slidesToShow: 3
+          }
+      }]
+  });
+});
+
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
 }
 
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-}
 
 //Menu phone screen
 var MenuItems = document.getElementById("MenuItems");

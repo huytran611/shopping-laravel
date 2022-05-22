@@ -48,7 +48,6 @@
 </x-guest-layout>
 --}}
 <x-guest-layout>
-    <div>
         <x-jet-validation-errors class="mb-4"/>
         <form action="{{route('login')}}" method="POST">
             @csrf
@@ -70,5 +69,4 @@
                     <span class="psw">Forgot <a href="{{route('password.request')}}">password?</a></span>
                   </div>
                 </div>
-      </div>
 </x-guest-layout>

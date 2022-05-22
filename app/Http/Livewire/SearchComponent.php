@@ -28,7 +28,6 @@ class SearchComponent extends Component
     public function mount()
     {
         $this->sorting = "default";
-        $this->pagesize = 12;
         $this->fill(request()->only('search','product_cat','product_cat_id')); 
     }
 
@@ -36,18 +35,18 @@ class SearchComponent extends Component
     {
         if($this->sorting == 'date')
         {
-            $products = Product::where('name','like','%'.$this->search .'%')->where('category_id','like','%'.$this->product_cat_id. '%')->orderBy('created_at','DESC')->paginate($this->pagesize);
+            $products = Product::where('name','like','%'.$this->search .'%')->where('category_id','like','%'.$this->product_cat_id. '%')->orderBy('created_at','DESC')->get();
         }
         else if($this->sorting == 'price')
         {
-            $products = Product::where('name','like','%'.$this->search .'%')->where('category_id','like','%'.$this->product_cat_id. '%')->orderBy('regular_price','ASC')->paginate($this->pagesize);
+            $products = Product::where('name','like','%'.$this->search .'%')->where('category_id','like','%'.$this->product_cat_id. '%')->orderBy('regular_price','ASC')->get();
         }
         else if($this->sorting == 'price-desc')
         {
-            $products = Product::where('name','like','%'.$this->search .'%')->where('category_id','like','%'.$this->product_cat_id. '%')->orderBy('regular_price','DESC')->paginate($this->pagesize);
+            $products = Product::where('name','like','%'.$this->search .'%')->where('category_id','like','%'.$this->product_cat_id. '%')->orderBy('regular_price','DESC')->get();
         }
         else{
-            $products = Product::where('name','like','%'.$this->search .'%')->where('category_id','like','%'.$this->product_cat_id. '%')->paginate($this->pagesize);
+            $products = Product::where('name','like','%'.$this->search .'%')->where('category_id','like','%'.$this->product_cat_id. '%')->get();
         }
 
         $categories = Category::all();
