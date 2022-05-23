@@ -10,43 +10,63 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;500;600&family=Open+Sans:wght@700&display=swap" rel="stylesheet">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    
     @livewireStyles 
 </head>
 <body>
     <div class="header">
         <div class="navbar">
             <div class="logo">
-                <a href="/"><img src="{{asset('assets/images/logo.png')}}" alt="" width="125px"></a>
+                <a href="/"><img src="{{asset('assets/images/logo.png')}}" alt="" width="90px"></a>
             </div>
             <nav>
-                <ul id="MenuItems">
+                <ul id="MenuItems" >
                     <li><a href="/">HOME</a></li>
-                    <li><a href="/news">SẢN PHẨM MỚI</a></li>
-                    <li><a href="/men">NAM</a></li>
-                    
-                    <li><a href="/women">NỮ</a></li>
-                    <li><a href="/kid">TRẺ EM</a></li>
+                    <li>
+                        <div class="dropdown">
+                            <a class="dropbtn" href="/news">SẢN PHẨM</button>
+                            <div class="dropdown-content-header">
+                              <a href="/product-category/fugit-qui">Link 1</a>
+                              <a href="/product-category/est-dicta">Áo</a>
+                              <a href="#">Link 2</a>
+                              <a href="#">Link 3</a>
+                            </div>
+                          </div>
+                    </li>
+                    <li><a href="">SALE</a></li>
+                    <li><a href="">SNEAKER</a></li>
                     <li><a href="/accessories">PHỤ KIỆN</a></li>
                 </ul>
             </nav>
-            <div class="searchbar">
-                <input type="text" placeholder="Tìm kiếm..">
-            </div>
+            @livewire('header-search-component')
             @if(Route::has('login'))
                 @auth
                     @if(Auth::user()->utype === 'ADM')
-                        
-                        <a href=""> My Account ({{Auth::user()->name}})</a>
-                        <a href="{{route('admin.dashboard')}}">Dashboard</a>
-                        <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
+                    <div class="dropdown">
+                        <a href="" style="padding-right: 10px; color:#ff523b">{{Auth::user()->name}}</a>
+                        <div class="dropdown-user">
+                            <a href="{{route('admin.dashboard')}}">Dashboard</a>
+                            <br>
+                            <br>
+                            <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
+                        </div>
+                      </div>
                         <form id="logout-form" method="POST" action="{{route('logout')}}">
                             @csrf
                         </form>
                     @else
-            
-                        <a href=""> My Account ({{Auth::user()->name}})</a>
-                        <a href="{{route('user.dashboard')}}">Dashboard</a>
-                        <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
+                        
+                    <div class="dropdown">
+                        <a href="" style="padding-right: 10px; color:#ff523b">{{Auth::user()->name}}</a>
+                        <div class="dropdown-user">
+                            <a href="{{route('user.dashboard')}}">Dashboard</a>
+                            <br>
+                            <br>
+                            <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
+                        </div>
+                      </div>
+                         
                         <form id="logout-form" method="POST" action="{{route('logout')}}">
                             @csrf
                             
@@ -57,63 +77,64 @@
            
                 @endif
             @endif
-            <a href="/cart"><img src="{{asset('assets/images/cart.png')}}" class="cart-icon" id="cart" width="30px" height="30px"><span class="badge">3</span></a>
+            <a href="/cart"><img src="{{asset('assets/images/cart.png')}}" class="cart-icon" id="cart" width="30px" height="30px"></a>
             <img src="{{asset('assets/images/menu.png')}}" class="menu-icon" alt=""
             onclick="menutoggle()">
-            
-
         </div>
     </div>
+       
+    
+{{-- for ->layout('homepage.index')--}}
+
     {{$slot}}
+
+
+
     <div class="footer">
         <div class="container">
             <div class="row">
-                <div class="footer-col-1">
-                    <h3>Download Our App</h3>
-                    <p>Download App deee</p>
-                </div>
                 <div class="footer-col-2">
                     <img src="{{asset('assets/images/logo.png')}}" alt="">
-                    <p>Download App deee</p>
+                    <p>Fashion with out H</p>
                 </div>
-                <div class="footer-col-3">
-                    <h3>Useful Links</h3>
-                    <ul>
-                        <li>Coupons</li>
-                        <li>Blog Post</li>
-                        <li>Return Policy</li>
-                        <li>Join Affiliate</li>
-                    </ul>
-                </div>
-                <div class="footer-product-card">
-                    <h3>Folow Us</h3>
-                    <ul>
-                        <li>Faxebook</li>
-                        <li>Instagram</li>
-                        <li>Telegram</li>
-                        <li>HEHE</li>
-                    </ul>
-                </div>
+                <table class="table">
+                    <tr>
+                        <th>
+                            <div class="footer-col-3">
+                                <h3>Useful Links</h3>
+                                <ul>
+                                    <li>Coupons</li>
+                                    <li>Blog Post</li>
+                                    <li>Return Policy</li>
+                                    <li>Join Affiliate</li>
+                                </ul>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="footer-product-card">
+                                <h3>Folow Us</h3>
+                                <ul>
+                                    <li>Faxebook</li>
+                                    <li>Instagram</li>
+                                    <li>Telegram</li>
+                                    <li>HEHE</li>
+                                </ul>
+                            </div>
+                        </th>
+                    </tr>
+                </table>
+                
+                
             </div>
             <hr>
             <p class="copyright">Copyright 2022 - by Huy Tran </p>
         </div>
-    </div>
-<script>
-    var MenuItems = document.getElementById("MenuItems");
-MenuItems.style.maxHeight = "0px";
-
-function menutoggle(){
-    if(MenuItems.style.maxHeight == "0px")
-    {
-        MenuItems.style.maxHeight = "200px";
-    }
-    else{
-        MenuItems.style.maxHeight = "0px";
-    }
-}
-</script>
+    </div> 
+ @livewireScripts
+<script src="{{ asset('assets/js/jquery-1.12.4.minb8ff.js')}}"></script>
+<script src="{{ asset('assets/js/functions.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
 <script src="{{ asset('assets/js/scripts.js')}}"></script>
-@livewireScripts
+
 </body>
 </html>

@@ -23,11 +23,10 @@ class ProductSizeFactory extends Factory
 
         return [
             //
-            'name' => $product_name,
-            'slug' => $slug,
-            'size' => $this->faker->text(5),
-            'product_id' => $this->faker->numberBetween(1,22),
-            'quantity_size' => $this->faker->numberBetween(0,100),
+            'option_id' => $this->faker->numberBetween(1,10),
+            'option_group_id' => $this->faker->numberBetween(1,2),
+            'option_price_increment'=>$this->faker->numberBetween(1,69),
+            'product_id'=>$this->faker->numberBetween(1,5),
         ];
     }
 }

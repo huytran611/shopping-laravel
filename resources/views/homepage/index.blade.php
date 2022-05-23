@@ -28,6 +28,7 @@
                             <a class="dropbtn" href="/news">SẢN PHẨM</button>
                             <div class="dropdown-content-header">
                               <a href="/product-category/fugit-qui">Link 1</a>
+                              <a href="/product-category/est-dicta">Áo</a>
                               <a href="#">Link 2</a>
                               <a href="#">Link 3</a>
                             </div>
@@ -44,8 +45,10 @@
                     @if(Auth::user()->utype === 'ADM')
                     <div class="dropdown">
                         <a href="" style="padding-right: 10px; color:#ff523b">{{Auth::user()->name}}</a>
-                        <div class="dropdown-content">
+                        <div class="dropdown-user">
                             <a href="{{route('admin.dashboard')}}">Dashboard</a>
+                            <br>
+                            <br>
                             <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
                         </div>
                       </div>
@@ -56,8 +59,10 @@
                         
                     <div class="dropdown">
                         <a href="" style="padding-right: 10px; color:#ff523b">{{Auth::user()->name}}</a>
-                        <div class="dropdown-content">
+                        <div class="dropdown-user">
                             <a href="{{route('user.dashboard')}}">Dashboard</a>
+                            <br>
+                            <br>
                             <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
                         </div>
                       </div>

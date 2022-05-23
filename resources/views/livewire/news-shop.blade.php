@@ -11,7 +11,7 @@
           
               <div class="collection-sort">
                 <h4 >Sắp xếp theo:</h4>
-                <select wire:model="sorting" style="width:150px;">
+                <select wire:model="sorting" style="width:150px; height:50px; font-size: 16px; font-style:italic">
                     <option value="default" selected="selected">Mặc định</option>
                     <option value="date">Mới nhất</option>
                     <option value="price">Giá: thấp -> cao</option>

@@ -67,26 +67,23 @@
             @csrf
                 <div class="account-container">
                     <h3 class="head-login">Đăng ký tài khoản</h3>
-                    <label for="fname"><b>Tên bạn</b></label>
+                    <h4 for="fname"><b>Tên bạn</b></h4>
                     <input type="text" placeholder="Nhập tên của bạn" :value="name" name="name" required autofocus autocomplete="name">
                     
-                  <label for="email"><b>Email</b></label>
+                  <h4 for="email"><b>Email</b></h4>
                   <input type="text" placeholder="Nhập Email" name="email" :value="email" required>
         
-                  <label for="psw"><b>Mật khẩu</b></label>
+                  <h4 for="psw"><b>Mật khẩu</b></h4>
                   <input type="password" placeholder="Nhập mật khẩu" name="password" required autocomplete="new-password">
         
-                    <label for="confirmpsw"><b>Xác nhận lại mật khẩu</b></label>
+                    <h4 for="confirmpsw"><b>Xác nhận lại mật khẩu</b></h4>
                     <input type="password" placeholder="Nhập lại mật khẩu" name="password_confirmation" required autocomplete="new-password">
         
                       
                   <button type="submit">Đăng ký</button>
-                  <label>
-                    <input type="checkbox" checked="checked" name="remember"> Remember me
-                  </label>
                   <div class="">
                     <a href="{{route('login')}}"><button type="button" class="cancelbtn">Đăng nhập</button></a>
-                    <span class="psw">Forgot <a href="#">password?</a></span>
+                    <span class="psw"><a href="#"> Forgot password?</a></span>
                   </div>
                 </div>
           </form>

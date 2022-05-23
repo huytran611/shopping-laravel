@@ -51,22 +51,18 @@
         <x-jet-validation-errors class="mb-4"/>
         <form action="{{route('login')}}" method="POST">
             @csrf
-                
-                <div class="account-container">
+              <div class="account-container">
                 <h3 class="head-login">Đăng nhập</h3>
-                  <label for="uname"><b>Email</b></label>
+                  <h4 for="uname"><b>Email</b></h4>
                   <input type="text" placeholder="Enter Email" name="email" :value="old('email')" required autofocus>
                     <br>
-                  <label for="psw"><b>Mật khẩu</b></label>
+                  <h4 for="psw"><b>Mật khẩu</b></h4>
                   <input type="password" placeholder="*******************" name="password" required autocomplete="current-password">
                       
                   <button type="submit">Login</button>
-                  <label>
-                    <input type="checkbox" checked="checked" name="remember"> Remember me
-                  </label>
-                  <div class="">
                     <a href="{{route('register')}}"><button type="button" class="cancelbtn">Đăng ký tài khoản</button></a>
-                    <span class="psw">Forgot <a href="{{route('password.request')}}">password?</a></span>
+                    
+                    <span class="psw"><a href="{{route('password.request')}}"> Forgot password?</a></span>
                   </div>
                 </div>
 </x-guest-layout>

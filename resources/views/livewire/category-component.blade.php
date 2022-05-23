@@ -13,8 +13,6 @@
                       <option value="price-desc">Giá: cao -> thấp</option>
                   </select>
                 </div>
-                </div>
-            
               </div>
             
           </nav>
