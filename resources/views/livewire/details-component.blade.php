@@ -23,12 +23,24 @@
             <p>Home / T-shirt</p>
             <h1>{{$product->name}}</h1>
             <h4>{{$product->regular_price}}</h4>
-            <select name="" id="">
+            <h5>Tình trạng: {{$product->stock_status}}</h5>
+            <select name="size">
                 <option value="">Chọn Size</option>
-               @foreach ($size as $p_size)
-                    <option value="">{{$p_size->size}}</option>
+                @foreach ($size as $item)
+                    @if ($item->product_id == $product->id && $item->option_group_id == 1)
+                    <option value="size">{{$item->option_id}}
+                    </option>
+                    @endif
                 @endforeach
-                
+                      
+            </select>
+            <select name="color">
+                <option value="">Chọn Màu</option>
+                @foreach ($size as $item)
+                    @if ($item->product_id == $product->id && $item->option_group_id == 2)
+                    <option value="size">{{$item->option_id}}</option>
+                    @endif
+                @endforeach  
             </select>
             <input class="input-cart" type="text" value="1">
             <a href="" class="btn" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->regular_price}})">Thêm vào giỏ</a>
@@ -37,21 +49,19 @@
         </div>
     </div>
 </div>
-<div class="product"> 
+<div > 
     <h2 class="categories">Sản phẩm liên quan</h2>
-    <div class="product-container">
+    <div class="gallery">
         @foreach ($related_products as $r_products)
-        <div class="product-card">
-            <div class="product-image">
-                <span class="discount-tag">{{$r_products->stock_status}}</span>
-                <img src= "{{asset('assets/images')}}/{{$r_products->image}}" style="height: 400px" class="product-thumb" alt="{{$product->name}}">
-                <a href=""><button class="card-btn" wire:click.prevent="store({{$product->id}},{{$product->name}},{{$product->regular_price}})">Thêm vào giỏ</button></a>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">{{$r_products->name}}</h2>
-                <p class="product-short-description">{{$r_products->short_description}}</p>
-                <span class="price">{{$r_products->regular_price}}</span><span class="actual-price">{{$r_products->sale_price}}</span>
-            </div>
+        <div class="content">
+            <a href="{{route('product.details',['slug'=>$r_products->slug])}}">
+              <img src="{{asset('assets/images')}}/{{$r_products->image}}" style="height: 400px;" alt="{{$r_products->name}}">
+            </a>
+            <a href="{{route('product.details',['slug'=>$r_products->slug])}}">
+              <h3 class="product-brand">{{$r_products->name}}</h3>
+          </a>
+          <h3>${{$r_products->regular_price}}</span><span class="actual-price">{{$r_products->sale_price}}</span></h3>
+          <button class="buy-1" wire:click.prevent="store({{$r_products->id}},'{{$r_products->name}}',{{$r_products->regular_price}})">Buy Now</button>
         </div>
         @endforeach    
     </div>

@@ -7,12 +7,12 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Models\ProductSize;
+use Illuminate\Support\Facades\DB;
 
 class DetailsComponent extends Component
 {
     use WithPagination;
     public $slug;
-
 
     public function increaseQuantity($rowId)
     {
@@ -34,10 +34,10 @@ class DetailsComponent extends Component
     }
     public function render()
     {
+        $size = ProductSize::all();
         $product = Product::where('slug', $this->slug)->first();
         $popular_products = Product::inRandomOrder()->limit(5)->get();
-        $size = ProductSize::where('option_id')->get();
-        $related_products = Product::where('category_id', $product->category_id)->inRandomOrder()->limit(5)->get();
+        $related_products = Product::where('category_id', $product->category_id)->inRandomOrder()->limit(4)->get();
         return view('livewire.details-component',['product'=>$product, 'popular_products'=>$popular_products,'related_products'=>$related_products,'size'=>$size])->layout('homepage.index');
     }
 }

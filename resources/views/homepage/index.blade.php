@@ -11,8 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;500;600&family=Open+Sans:wght@700&display=swap" rel="stylesheet">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    
-    @livewireStyles 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">    @livewireStyles 
 </head>
 <body>
     <div class="header">
@@ -40,6 +39,7 @@
                 </ul>
             </nav>
             @livewire('header-search-component')
+            <a href="/cart"><img src="{{asset('assets/images/cart.png')}}" class="cart-icon" id="cart" width="30px" height="30px"></a>
             @if(Route::has('login'))
                 @auth
                     @if(Auth::user()->utype === 'ADM')
@@ -47,6 +47,15 @@
                         <a href="" style="padding-right: 10px; color:#ff523b">{{Auth::user()->name}}</a>
                         <div class="dropdown-user">
                             <a href="{{route('admin.dashboard')}}">Dashboard</a>
+                            <br>
+                            <br>
+                            <a href="{{route('admin.categories')}}" title="Categories">Categories</a>
+                            <br>
+                            <br>
+                            <a href="{{route('admin.products')}}" title="Products">All Products</a>
+                            <br>
+                            <br>
+                            <a href="{{route('admin.homeslider')}}" title="Home Slider">Manage Home Slider</a>
                             <br>
                             <br>
                             <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
@@ -74,10 +83,9 @@
                     @endif
                 @else
                 <a href="{{route('login')}}"><img src="{{asset('assets/images/user-icon.png')}}" style="height:30px; margin-top:5px;"alt=""></a>
-           
                 @endif
             @endif
-            <a href="/cart"><img src="{{asset('assets/images/cart.png')}}" class="cart-icon" id="cart" width="30px" height="30px"></a>
+            
             <img src="{{asset('assets/images/menu.png')}}" class="menu-icon" alt=""
             onclick="menutoggle()">
         </div>

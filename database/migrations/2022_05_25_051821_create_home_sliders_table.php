@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('options', function (Blueprint $table) {
+        Schema::create('home_sliders', function (Blueprint $table) {
             $table->id();
-            $table->string('option_name');
-            $table->foreign('option_group_id')->references('id')->on('optiongroups')->onDelete('cascade');
+            $table->string('title');
+            $table->string('subtitle');
+            $table->string('price');
+            $table->string('link');
+            $table->string('image');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('options');
+        Schema::dropIfExists('home_sliders');
     }
 };

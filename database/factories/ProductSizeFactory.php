@@ -23,10 +23,10 @@ class ProductSizeFactory extends Factory
 
         return [
             //
-            'option_id' => $this->faker->numberBetween(1,10),
-            'option_group_id' => $this->faker->numberBetween(1,2),
-            'option_price_increment'=>$this->faker->numberBetween(1,69),
-            'product_id'=>$this->faker->numberBetween(1,5),
+            'option_id' => $this->faker->numberBetween(6,8),
+            'option_group_id' => $this->faker->numberBetween(2,2),
+            'option_price_increment'=>$this->faker->numberBetween(1,20),
+            'product_id'=>$this->faker->numberBetween(2,20),
         ];
     }
 }
