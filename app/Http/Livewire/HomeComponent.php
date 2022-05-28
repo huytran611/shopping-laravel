@@ -2,6 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Category;
+use App\Models\HomeCategory;
+use App\Models\HomeSlider;
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -12,14 +15,20 @@ class HomeComponent extends Component
     use WithPagination;
     public function store($product_id,$product_name,$product_price)
     {
-        Cart::add($product_id,$product_name,1,$product_price)->associate("App\Models\Product");
+        Cart::instance('cart')->add($product_id,$product_name,1,$product_price)->associate("App\Models\Product");
        // session()->flash('success_message','Item added in Cart');
         return redirect()->route('product.cart');
     }
     
     public function render()
     {
-        $products = Product::paginate(12);
-        return view('livewire.home-component',['products'=>$products])->layout('homepage.index');
+        $sliders = HomeSlider::where('status',1)->get();
+        $lproducts = Product::orderBy('created_at','DESC')->get()->take(12);
+        $category = HomeCategory::find(1);
+        $cats = explode(',',$category->sel_categories);
+        $categories = Category::whereIn('id',$cats)->get();
+        $no_of_products = $category->no_of_products;
+        $sproducts = Product::where('sale_price','>',0)->inRandomOrder()->get()->take(10);
+        return view('livewire.home-component',['lproducts'=>$lproducts,'sliders'=>$sliders,'categories'=>$categories,'no_of_products'=>$no_of_products,'sproducts'=>$sproducts])->layout('homepage.index');
     }
 }

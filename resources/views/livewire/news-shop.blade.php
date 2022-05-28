@@ -26,13 +26,13 @@
             @foreach ($products as $product)
             <div class="content">
                   <a href="{{route('product.details',['slug'=>$product->slug])}}">
-                    <img src="{{asset('assets/images')}}/{{$product->image}}" style="height: 400px;" alt="{{$product->name}}">
+                    <img src="{{asset('assets/images/products')}}/{{$product->image}}" style="height: 400px; width: 300px" alt="{{$product->name}}">
                   </a>
                   <a href="{{route('product.details',['slug'=>$product->slug])}}">
                     <h3 class="product-brand">{{$product->name}}</h3>
                 </a>
-                <h3>${{$product->regular_price}}</span><span class="actual-price">{{$product->sale_price}}</span></h3>
-                <button class="buy-1" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->regular_price}})">Buy Now</button>
+                <h3 >{{$product->regular_price}}đ</h3>
+                <button class="buy-1" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->regular_price}})">Add to cart</button>
             </div>
             @endforeach
         </div>

@@ -42,7 +42,7 @@
                                 @foreach ($products as $product)
                                     <tr>
                                         <td>{{$product->id}}</td>
-                                        <td><img src="{{asset('assets/images')}}/{{$product->image}}" width="60" alt="" ></td>
+                                        <td><img src="{{asset('assets/images/products')}}/{{$product->image}}" width="60" alt="" ></td>
                                         <td>{{$product->name}}</td>
                                         <td>{{$product->stock_status}}</td>
                                         <td>{{$product->regular_price}}</td>
@@ -50,7 +50,7 @@
                                         <td>{{$product->created_at}}</td>
                                         <td>
                                             <a href="{{route('admin.editproduct',['product_slug'=>$product->slug])}}"><i class="fa fa-edit fa-2x text-info"></i></a>
-                                            <a href="#" style="margin-left:10px;" wire:click.prevent="deleteProduct({{$product->id}})"><i class="fa fa-times fa-2x text-danger"></i></a>
+                                            <a href="#" style="margin-left:10px;"  onclick="confirm('Are you sure want to delete this product?') || event.stopImmediatePropagation()" wire:click.prevent="deleteProduct({{$product->id}})"><i class="fa fa-times fa-2x text-danger"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

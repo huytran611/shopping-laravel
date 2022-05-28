@@ -2,11 +2,11 @@
 <div class="small-container single-product">
     <div class="row">
         <div class="col-2">
-            <img src="{{asset('assets/images')}}/{{$product->image}}" alt="" width="100%" id="productimg">
+            <img src="{{asset('assets/images/products')}}/{{$product->image}}" alt="" width="100%" id="productimg">
 
             <div class="small-img-row">
                 <div class="small-img-col">
-                    <img src="{{asset('assets/images')}}/{{$product->image}}" alt=""  width="100%" class="small-img">
+                    <img src="{{asset('assets/images/products')}}/{{$product->image}}" alt=""  width="100%" class="small-img">
                 </div>
                 <div class="small-img-col">
                     <img src="{{asset('assets/images/gallery-2.jpg')}}" alt=""  width="100%" class="small-img">
@@ -55,7 +55,7 @@
         @foreach ($related_products as $r_products)
         <div class="content">
             <a href="{{route('product.details',['slug'=>$r_products->slug])}}">
-              <img src="{{asset('assets/images')}}/{{$r_products->image}}" style="height: 400px;" alt="{{$r_products->name}}">
+              <img src="{{asset('assets/images/products')}}/{{$r_products->image}}" style="height: 400px;" alt="{{$r_products->name}}">
             </a>
             <a href="{{route('product.details',['slug'=>$r_products->slug])}}">
               <h3 class="product-brand">{{$r_products->name}}</h3>

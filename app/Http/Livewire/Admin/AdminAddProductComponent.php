@@ -35,8 +35,38 @@ class AdminAddProductComponent extends Component
         $this->slug = Str::slug($this->name,'-');
     }
 
+    public function updated($fields)
+    {
+        $this->validateOnly($fields,[
+            'name'=> 'required',
+            'slug'=> 'required|unique:products',
+            'short_description'=> 'required',
+            'description'=> 'required',
+            'regular_price'=> 'required|numeric',
+            'sale_price'=> 'numeric',
+            'sku'=> 'required',
+            'stock_status'=> 'required',
+            'quantity'=> 'required|numeric',
+            'image'=> 'required|mimes:jpg,jpeg,png',
+            'category_id' => 'required'
+        ]);
+    }
+    
     public function addProduct()
     {
+        $this->validate([
+           'name'=> 'required',
+           'slug'=> 'required|unique:products',
+           'short_description'=> 'required',
+           'description'=> 'required',
+           'regular_price'=> 'required|numeric',
+           'sale_price'=> 'numeric',
+           'sku'=> 'required',
+           'stock_status'=> 'required',
+           'quantity'=> 'required|numeric',
+           'image'=> 'required|mimes:jpg,jpeg,png',
+           'category_id' => 'required'
+        ]);
         $product = new Product();
         $product->name = $this->name;
         $product->slug = $this->slug;
@@ -59,6 +89,6 @@ class AdminAddProductComponent extends Component
     public function render()
     {
         $categories = Category::all();
-        return view('livewire.admin.admin-add-product-component',['categories'=>$categories])->layout('homepage.index');
+        return view('livewire.admin.admin-add-product-component',['categories'=>$categories])->layout('homepage.adminindex');
     }
 }

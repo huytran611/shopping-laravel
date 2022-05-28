@@ -40,6 +40,7 @@
                 </ul>
             </nav>
             @livewire('header-search-component')
+            <a href="/cart"><img src="{{asset('assets/images/cart.png')}}" class="cart-icon" id="cart" width="30px" height="30px"></a>
             @if(Route::has('login'))
                 @auth
                     @if(Auth::user()->utype === 'ADM')
@@ -77,7 +78,7 @@
            
                 @endif
             @endif
-            <a href="/cart"><img src="{{asset('assets/images/cart.png')}}" class="cart-icon" id="cart" width="30px" height="30px"></a>
+            
             <img src="{{asset('assets/images/menu.png')}}" class="menu-icon" alt=""
             onclick="menutoggle()">
         </div>

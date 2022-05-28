@@ -10,12 +10,12 @@
                 <strong>Success</strong>{{Session::get('success_message')}}
             
         @endif
-        @if(Cart::count() > 0)
-            @foreach (Cart::content() as $item)
+        @if(Cart::instance('cart')->count() > 0)
+            @foreach (Cart::instance('cart')->content() as $item)
             <tr>
                 <td>
                     <div class="cart-info">
-                        <img src="{{asset('assets/images')}}/{{$item->model->image}}" alt="{{$item->model->name}}">
+                        <img src="{{asset('assets/images/products')}}/{{$item->model->image}}" alt="{{$item->model->name}}">
                         <div>
                             <a href="{{route('product.details',['slug'=>$item->model->slug])}}"><p>{{$item->model->name}}</p></a>
                             <small>{{$item->model->regular_price}}</small>
@@ -43,15 +43,15 @@
         <table>
             <tr>
                 <td>Tổng</td>
-                <td>${{Cart::subtotal()}}</td>
+                <td>${{Cart::instance('cart')->subtotal()}}</td>
             </tr>
             <tr>
                 <td>Thuế</td>
-                <td>${{Cart::tax()}}</td>
+                <td>${{Cart::instance('cart')->tax()}}</td>
             </tr>
             <tr>
                 <td>Tổng cộng</td>
-                <td>${{Cart::total()}}</td>
+                <td>${{Cart::instance('cart')->total()}}</td>
             </tr>
         </table>
     </div>

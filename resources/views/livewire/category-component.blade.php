@@ -20,7 +20,7 @@
               @foreach ($products as $product)
               <div class="content">
                     <a href="{{route('product.details',['slug'=>$product->slug])}}">
-                      <img src="{{asset('assets/images')}}/{{$product->image}}" style="height: 400px;" alt="{{$product->name}}">
+                      <img src="{{asset('assets/images/products')}}/{{$product->image}}" style="height: 400px;" alt="{{$product->name}}">
                     </a>
                     <a href="{{route('product.details',['slug'=>$product->slug])}}">
                       <h3 class="product-brand">{{$product->name}}</h3>

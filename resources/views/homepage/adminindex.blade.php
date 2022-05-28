@@ -11,6 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;500;600&family=Open+Sans:wght@700&display=swap" rel="stylesheet">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">   
+    @livewireStyles 
+
 </head>
 <body>
     <div class="header">
@@ -37,7 +40,8 @@
                     <li><a href="/accessories">PHỤ KIỆN</a></li>
                 </ul>
             </nav>
-            
+            @livewire('header-search-component')
+            <a href="/cart"><img src="{{asset('assets/images/cart.png')}}" class="cart-icon" id="cart" width="30px" height="30px"></a>
             @if(Route::has('login'))
                 @auth
                     @if(Auth::user()->utype === 'ADM')
@@ -84,8 +88,6 @@
                 @endif
             @endif
             
-            @livewire('header-search-component')
-            @livewire('cart-count-component')
             <img src="{{asset('assets/images/menu.png')}}" class="menu-icon" alt=""
             onclick="menutoggle()">
         </div>
@@ -97,52 +99,11 @@
     {{$slot}}
 
 
-
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer-col-2">
-                    <img src="{{asset('assets/images/logo.png')}}" alt="">
-                    <p>Fashion with out H</p>
-                </div>
-                <table class="table">
-                    <tr>
-                        <th>
-                            <div class="footer-col-3">
-                                <h3>Useful Links</h3>
-                                <ul>
-                                    <li>Coupons</li>
-                                    <li>Blog Post</li>
-                                    <li>Return Policy</li>
-                                    <li>Join Affiliate</li>
-                                </ul>
-                            </div>
-                        </th>
-                        <th>
-                            <div class="footer-product-card">
-                                <h3>Folow Us</h3>
-                                <ul>
-                                    <li>Faxebook</li>
-                                    <li>Instagram</li>
-                                    <li>Telegram</li>
-                                    <li>HEHE</li>
-                                </ul>
-                            </div>
-                        </th>
-                    </tr>
-                </table>
-                
-                
-            </div>
-            <hr>
-            <p class="copyright">Copyright 2022 - by Huy Tran </p>
-        </div>
-    </div> 
- @livewireScripts
+ 
 <script src="{{ asset('assets/js/jquery-1.12.4.minb8ff.js')}}"></script>
 <script src="{{ asset('assets/js/functions.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
-<script src="{{ asset('assets/js/scripts.js')}}"></script>
-
+<script src="{{ asset('assets/js/scripts.js')}}"></script>>
+@livewireScripts
 </body>
 </html>

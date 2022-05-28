@@ -22,6 +22,14 @@ class AdminEditCategoryComponent extends Component
         $this->slug = $category->slug;
     }
 
+    public function updated($fields)
+    {
+        $this->validateOnly($fields,[
+            'name' => 'required',
+            'slug' => 'required|unique:categories'
+        ]);
+    }
+    
     public function generateslug()
     {
         $this->slug = Str::slug($this->name);
@@ -29,6 +37,10 @@ class AdminEditCategoryComponent extends Component
      
     public function updateCategory()
     {
+        $this->validate([
+            'name' => 'required',
+            'slug' => 'required|unique:categories'
+        ]);
         $category = Category::find($this->category_id);
         $category->name = $this->name;
         $category->slug = $this->slug;
@@ -38,6 +50,6 @@ class AdminEditCategoryComponent extends Component
 
     public function render()
     {
-        return view('livewire.admin.admin-edit-category-component')->layout('homepage.index');
+        return view('livewire.admin.admin-edit-category-component')->layout('homepage.adminindex');
     }
 }
