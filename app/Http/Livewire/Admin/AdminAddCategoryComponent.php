@@ -24,7 +24,7 @@ class AdminAddCategoryComponent extends Component
         ]);
     }
 
-    public function soreCategory()
+    public function storeCategory()
     {
         $this->validate([
             'name' => 'required',

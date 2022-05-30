@@ -30,6 +30,7 @@ class CartComponent extends Component
         //session()->flash('success_message','Đã xóa sản phẩm');
         $this->emitTo('cart-count-component','refreshComponent');
     }
+
     public function render()
     {
         return view('livewire.cart-component')->layout('homepage.index');

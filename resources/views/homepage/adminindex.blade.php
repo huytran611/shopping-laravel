@@ -60,6 +60,9 @@
                             <a href="{{route('admin.homeslider')}}" title="Home Slider">Manage Home Slider</a>
                             <br>
                             <br>
+                            <a href="{{route('admin.coupons')}}" title="All Coupons">All Coupons</a>
+                            <br>
+                            <br>
                             <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
                         </div>
                       </div>

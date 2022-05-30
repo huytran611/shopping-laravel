@@ -30,6 +30,7 @@
                     <button class="btn-increase" wire:click.prevent="increaseQuantity('{{$item->rowId}}')">+</button>
                     <button class="btn-decrease" wire:click.prevent="decreaseQuantity('{{$item->rowId}}')">-</button>
                 </td>
+                
                 <td>{{$item->subtotal}}</td>
 
             </tr>
