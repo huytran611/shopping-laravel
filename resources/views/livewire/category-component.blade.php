@@ -1,12 +1,10 @@
 <div class="container">
-    {{$category_name}}
+    <h2 style="margin-left:100px; font-style:italic;">{{$category_name}}</h2>
           <nav class="product-filter">
-            
               <div class="sort">
-            
                 <div class="collection-sort">
                   <h4 >Sắp xếp theo:</h4>
-                  <select wire:model="sorting" style="width:150px;">
+                  <select wire:model="sorting" class="select-orderby">
                       <option value="default" selected="selected">Mặc định</option>
                       <option value="date">Mới nhất</option>
                       <option value="price">Giá: thấp -> cao</option>

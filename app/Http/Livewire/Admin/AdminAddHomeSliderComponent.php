@@ -35,6 +35,6 @@ class AdminAddHomeSliderComponent extends Component
 
     public function render()
     {
-        return view('livewire.admin.admin-add-home-slider-component')->layout('homepage.adminindex');
+        return view('livewire.admin.admin-add-home-slider-component')->layout('homepage.index');
     }
 }

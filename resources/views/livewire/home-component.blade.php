@@ -14,29 +14,28 @@
   </div>
 
   <!--Sale Slider-->
-  <div class="slider" id="slider">
-    @if (count($sproducts) == 0)
-    @else
-    <img src="{{asset('assets/images/sale.png')}}" width="150" alt="">
-    <div class="slide" id="slide">
-      @foreach ($sproducts as $sproduct)
-      <div class="content">
-          <a href="{{route('product.details',['slug'=>$sproduct->slug])}}">
-            <img src="{{asset('assets/images/products')}}/{{$sproduct->image}}" style="height: 400px; width:300px"  alt="{{$sproduct->name}}">
-          </a>
-          <a href="{{route('product.details',['slug'=>$sproduct->slug])}}">
-            <h3 class="product-brand">{{$sproduct->name}}</h3>
-          </a>
-        <h3 class="strikethrough">{{$sproduct->regular_price}}đ</h3><span><h3>{{$sproduct->sale_price}}</h3></span>
-        <button class="buy-1" wire:click.prevent="store({{$sproduct->id}},'{{$sproduct->name}}',{{$sproduct->regular_price}})">Buy Now</button>
+  @if (count($sproducts) == 0)
+      @else
+      <div class="slider" id="slider">
+      <h3 style="font-style:italic; padding-top:20px; padding-left:100px">ON SALE <i class="fa-solid fa-fire-flame-curved" style="color:red"></i> <i class="fa-solid fa-fire-flame-curved" style="color:red"></i> <i class="fa-solid fa-fire-flame-curved" style="color:red"></i> </h3>
+      <div class="slide" id="slide">
+        @foreach ($sproducts as $sproduct)
+          <div class="content">
+              <a href="{{route('product.details',['slug'=>$sproduct->slug])}}">
+                <img src="{{asset('assets/images/products')}}/{{$sproduct->image}}" style="height: 400px; width:300px"  alt="{{$sproduct->name}}">
+              </a>
+              <a href="{{route('product.details',['slug'=>$sproduct->slug])}}">
+                <h3 class="product-brand">{{$sproduct->name}}</h3>
+              </a>
+            <h3 class="strikethrough">{{$sproduct->regular_price}}đ</h3><span><h3>{{$sproduct->sale_price}}</h3></span>
+            <button class="buy-1" wire:click.prevent="store({{$sproduct->id}},'{{$sproduct->name}}',{{$sproduct->regular_price}})">Buy Now</button>
+          </div>
+        @endforeach
       </div>
-    @endforeach
+      <a class="ctrl-btn pro-next">❯</a>
+      <a class="ctrl-btn pro-prev">❮</a>
     </div>
-    <a class="ctrl-btn pro-next">❯</a>
-    <a class="ctrl-btn pro-prev">❮</a>
-  
   @endif
-  </div>
 
   <!--Products List-->
   <h3 style="font-style:italic; padding-top:20px; padding-left:100px">NEWEST PRODUCTS</h3>
@@ -56,55 +55,7 @@
   
   </div>
   <a href="/news"><h3 style="text-align: center; font-style:italic;margin-bottom:70px;margin-top:20px">Xem thêm sản phẩm -></h3></a>
-  <div class="section">
-    <div class="row">
-      <div class="logo-wrapper col-12 col-sm-3 col-md-3">
-        <a href="https://www.adidas.com/us" target="_blank">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/827904/151792556147.jpg">
-        </a>
-      </div>
-      <div class="logo-wrapper col-12 col-sm-3 col-md-3">
-        <a href="https://www.apple.com/" target="_blank">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/827904/Apple-logo1.jpg">
-        </a>
-      </div>
-      <div class="logo-wrapper col-12 col-sm-3 col-md-3">
-        <a href="https://amazon.com/" target="_blank">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/827904/hidden_meanings_facts_within_famous_logos_cover_image.jpg">
-        </a>
-      </div>
-      <div class="logo-wrapper col-12 col-sm-3 col-md-3">
-        <a href="https://www.beatsbydre.com/" target="_blank">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/827904/558390-11FO8A1505384509.png">
-        </a>
-      </div>
-    </div>
-    <div class="row">
-      <div class="logo-wrapper col-12 col-sm-3 col-md-3">
-        <a href="https://www.beatsbydre.com/" target="_blank">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/827904/558390-11FO8A1505384509.png">
-        </a>
-      </div>
-      <div class="logo-wrapper col-12 col-sm-3 col-md-3">
-        <a href="https://amazon.com/" target="_blank">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/827904/hidden_meanings_facts_within_famous_logos_cover_image.jpg">
-        </a>
-      </div>
-      <div class="logo-wrapper col-12 col-sm-3 col-md-3">
-        <a href="https://apple.com/" target="_blank">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/827904/Apple-logo1.jpg">
-        </a>
-      </div>
-      <div class="logo-wrapper col-12 col-sm-3 col-md-3">
-        <a href="https://www.adidas.com/us" target="_blank">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/827904/151792556147.jpg">
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    
+  <script> 
   //Sale Slider
     productScroll();
 
@@ -193,5 +144,6 @@
       slides[slideIndex-1].style.display = "block";
       dots[slideIndex-1].className += " active";
     }
+ // Do this every 1 second, increase this!
   </script>
 </div

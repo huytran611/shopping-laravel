@@ -1,17 +1,11 @@
 <div class="container">
-  <div class="topnav">
-    <a href="/news" class="atag active">Tất cả</a>
-    @foreach ($categories as $item)
-        <a class="atag" href="/product-category/{{$item->slug}}">{{$item->name}}</a>
-    @endforeach
-  </div>
         <nav class="product-filter">
           
             <div class="sort">
           
               <div class="collection-sort">
                 <h4 >Sắp xếp theo:</h4>
-                <select wire:model="sorting" style="width:150px; height:50px; font-size: 16px; font-style:italic">
+                <select wire:model="sorting" class="select-orderby">
                     <option value="default" selected="selected">Mặc định</option>
                     <option value="date">Mới nhất</option>
                     <option value="price">Giá: thấp -> cao</option>

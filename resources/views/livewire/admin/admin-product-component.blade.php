@@ -1,4 +1,5 @@
 <div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">  
     <style>
         nav svg{
             height: 20px;
@@ -56,7 +57,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        {{$products->links('vendor.pagination.bootstrap-5')}}
+                        {{$products->links('vendor.pagination.default')}}
                     </div>
                 </div>
             </div>

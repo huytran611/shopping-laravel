@@ -1,4 +1,5 @@
 <div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">  
     <div class="container" style="padding:30px 0">
         <div class="row">
             <div class="col-md-12">
@@ -52,6 +53,14 @@
                                 <input type="text" placeholder="Cart Value" class="form-control input-md" wire:model="cart_value">
                                 @error('cart_value') <p class="text-danger">{{$message}}</p>@enderror
 
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Expiry Date</label>
+                            <div class="col-md-4" wire:ignore>
+                                <input type="text" id="expiry_date" placeholder="Year-Month-Day" class="form-control input-md" wire:model="expiry_date">
+                                @error('expiry_date') <p class="text-danger">{{$message}}</p>@enderror
                             </div>
                         </div>
 

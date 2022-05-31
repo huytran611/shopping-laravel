@@ -1,4 +1,5 @@
 <div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">  
    <div class="container" style="padding: 30px 0;">
         <div class="row">
             <div class="col-md-12">
@@ -24,6 +25,7 @@
                                 <th>Coupon Type</th>
                                 <th>Coupon Value</th>
                                 <th>Cart Value</th>
+                                <th>Expiry Date</th>
                                 <th>Action</th>
                             </thead>
                             <tbody>
@@ -33,11 +35,12 @@
                                         <td>{{$coupon->code}}</td>
                                         <td>{{$coupon->type}}</td>
                                         @if($coupon->type == 'fixed')
-                                            <td>${{$coupon->value}}</td>
+                                            <td>{{$coupon->value}}đ</td>
                                         @else
-                                            <td>${{$coupon->value}} %</td>
+                                            <td>{{$coupon->value}} %</td>
                                         @endif
                                         <td>{{$coupon->cart_value}}</td>
+                                        <td>{{$coupon->expiry_date}}</td>
                                         <td>
                                             <a href="{{route('admin.editcoupon',['coupon_id'=>$coupon->id])}}"> <i class="fa fa-edit fa-2x text-info"></i></a>
                                             <a href="#" onclick="confirm('Are you sure want to delete this coupon?') || event.stopImmediatePropagation()" wire:click.prevent="deleteCoupon({{$coupon->id}})" style="margin-left: 10px;"><i class="fa fa-times fa-2x text-danger"></i></a>

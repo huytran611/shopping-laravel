@@ -38,6 +38,6 @@ class AdminAddCategoryComponent extends Component
     }
     public function render()
     {  
-        return view('livewire.admin.admin-add-category-component')->layout('homepage.adminindex');
+        return view('livewire.admin.admin-add-category-component')->layout('homepage.index');
     }
 }
