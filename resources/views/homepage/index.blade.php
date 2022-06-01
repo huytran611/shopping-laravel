@@ -24,7 +24,7 @@
                     <li><a href="/">HOME</a></li>
                     <li>
                         <div class="dropdown">
-                            <a class="dropbtn">SẢN PHẨM <i class="fa-solid fa-caret-down"></i></a>                                
+                            <a class="dropbtn">PRODUCT <i class="fa-solid fa-caret-down"></i></a>                                
                             <div class="dropdown-content-header" >
                               <a href="/news">All Products</a>
                               <a href="/product-category/tshirt">Tshirt</a>
@@ -37,8 +37,8 @@
                           </div>
                     </li>
                     <li><a href="/sale">SALE</a></li>
-                    <li><a href="/shoes">SHOES</a></li>
-                    <li><a href="/accessories">PHỤ KIỆN</a></li>
+                    <li><a href="/accessories">ACCESSORIES</a></li>
+                    <li><a href="/about">ABOUT</a></li>
                 </ul>
             </nav>
             
@@ -46,7 +46,7 @@
                 @auth
                     @if(Auth::user()->utype === 'ADM')
                     <div class="dropdown">
-                        <a href="" style="padding-right: 10px; color:#ff523b">{{Auth::user()->name}}</a>
+                        <a href="" style="padding-right: 10px; color:#ff523b">{{Auth::user()->name}} <i class="fa-solid fa-caret-down"></i></a>
                         <div class="dropdown-user">
                             <a href="{{route('admin.dashboard')}}">Dashboard</a>
                             <a href="{{route('admin.categories')}}" title="Categories">Categories</a>
@@ -62,7 +62,7 @@
                     @else
                         
                     <div class="dropdown">
-                        <a href="" style="padding-right: 10px; color:#ff523b">{{Auth::user()->name}}</a>
+                        <a href="" style="padding-right: 10px; color:#ff523b">{{Auth::user()->name}} <i class="fa-solid fa-caret-down"></i></a>
                         <div class="dropdown-user">
                             <a href="{{route('user.dashboard')}}">Dashboard</a>
                             <br>

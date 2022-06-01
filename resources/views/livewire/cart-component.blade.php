@@ -98,6 +98,12 @@
             @endif
         @endif
         <br>
-        <a href="" style="background: #">Check out</a>
+        <a href="#" wire:click.prevent="checkout">Check out</a>
+        <br>
+        @if (Session::has('checkout_message'))
+                <h3 style="text-align: center">{{Session::get('checkout_message')}}</h3>
+        @endif
+        
+      
     </div>
 </div>

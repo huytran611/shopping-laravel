@@ -19,6 +19,7 @@ use App\Http\Livewire\Admin\AdminHomeSliderComponent;
 use App\Http\Livewire\Admin\AdminProductComponent;
 use App\Http\Livewire\CartComponent;
 use App\Http\Livewire\CategoryComponent;
+use App\Http\Livewire\CheckoutComponent;
 use App\Http\Livewire\DetailsComponent;
 use App\Http\Livewire\FemaleShop;
 use App\Http\Livewire\HomeComponent;
@@ -26,6 +27,7 @@ use App\Http\Livewire\KidShop;
 use App\Http\Livewire\MaleShop;
 use App\Http\Livewire\NewsShop;
 use App\Http\Livewire\SearchComponent;
+use App\Http\Livewire\ThankyouComponent;
 use App\Http\Livewire\User\UserDashboardComponent;
 use Illuminate\Support\Facades\Route;
 
@@ -100,6 +102,10 @@ Route::get('/accessories',AccesoriesShop::class);
 Route::get('/product-category/{category_slug}',CategoryComponent::class)->name('product.category');
 
 Route::get('/search',SearchComponent::class)->name('product.search');
+
+Route::get('/checkout',CheckoutComponent::class)->name('checkout');
+
+Route::get('/thank-you',ThankyouComponent::class)->name('thankyou');
 
 //--------------------------------------
 
