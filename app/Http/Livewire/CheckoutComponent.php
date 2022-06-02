@@ -56,7 +56,7 @@ class CheckoutComponent extends Component
         $order->fullname = $this-> fullname;
         $order->email = $this-> email;
         $order->mobile = $this-> mobile;
-        $order->line = $this-> line;
+        $order->line1 = $this-> line;
         $order->city = $this->city;
         $order->country = $this->country;
         $order->zipcode = $this->zipcode;
