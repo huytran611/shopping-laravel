@@ -101,15 +101,19 @@
               <label for="fname"><i class="fa fa-user"></i> Full Name</label>
               <input type="text" id="fname" name="firstname" placeholder="John M. Doe" wire:model="fullname">
               @error('fullname') <h4 style="color: red">{{$message}}</h4> @enderror
+
               <label for="email"><i class="fa fa-envelope"></i> Email</label>
               <input type="text" id="email" name="email" placeholder="john@example.com" wire:model="email">
               @error('email') <h4 style="color: red">{{$message}}</h4> @enderror
+
               <label for="mobile"><i class="fa fa-mobile"></i> Mobile</label>
               <input type="text" id="mobile" name="mobile" placeholder="0123456789" wire:model="mobile">
               @error('mobile') <h4 style="color: red">{{$message}}</h4> @enderror
+
               <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
               <input type="text" id="adr" name="address" placeholder="542 W. 15th Street" wire:model="line">
               @error('line') <h4 style="color: red">{{$message}}</h4> @enderror
+
               <label for="city"><i class="fa fa-institution"></i> City</label>
               <input type="text" id="city" name="city" placeholder="New York" wire:model="city">
               @error('city') <h4 style="color: red">{{$message}}</h4> @enderror
@@ -131,35 +135,53 @@
             <div class="col-50">
               <h3>Payment</h3>
               <div>
-                <input type="radio" id="cod" name="fav_language" value="cod" wire:model="paymentmethod">
-                <label for="cod">COD</label><br>
-                <input type="radio" id="card" name="fav_language" value="card" wire:model="paymentmethod">
-                <label for="card">Card</label><br>
+                <label for="cod">
+                  <input type="radio" style="width: 20px" id="cod" value="cod" wire:model="paymentmethod">Cash On Delivery
+                </label>
+                <label for="card">
+                  <input type="radio" style="width: 20px" id="card" value="card" wire:model="paymentmethod">Debit / Credit Card
+                </label>
                 @error('paymentmethod') <h4 style="color: red">{{$message}}</h4> @enderror
+                <br>
               </div>
-              <label for="fname">Accepted Cards</label>
-              <div class="icon-container">
-                <i class="fa fa-cc-visa" style="color:navy;"></i>
-                <i class="fa fa-cc-amex" style="color:blue;"></i>
-                <i class="fa fa-cc-mastercard" style="color:red;"></i>
-                <i class="fa fa-cc-discover" style="color:orange;"></i>
+              @if($paymentmethod == 'card')
+                <label for="fname">Accepted Cards</label>
+                <div>
+                  <div class="icon-container">
+                    <i class="fa fa-cc-visa" style="color:navy;"></i>
+                    <i class="fa fa-cc-amex" style="color:blue;"></i>
+                    <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                    <i class="fa fa-cc-discover" style="color:orange;"></i>
+                  </div>
+                  @if (Session::has('stripe_error'))
+                      <div style="color: red"> {{Session::get('stripe_error')}}</div>
+                  @endif
+                  <label for="cname">Name on Card</label>
+                  <input type="text" id="cname" name="cardname" placeholder="John More Doe" wire:model="card_name">
+                  @error('card_name') <h4 style="color: red">{{$message}}</h4> @enderror
+
+                  <label for="ccnum">Credit card number</label>
+                  <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" wire:model="card_no">
+                  @error('card_no') <h4 style="color: red">{{$message}}</h4> @enderror
+
+                  <label for="expmonth">Exp Month</label>
+                  <input type="text" id="expmonth" name="expmonth" placeholder="September" wire:model="exp_month">
+                  @error('exp_month') <h4 style="color: red">{{$message}}</h4> @enderror
+
+                  <div class="row">
+                    <div class="col-50">
+                      <label for="expyear">Exp Year</label>
+                      <input type="text" id="expyear" name="expyear" placeholder="2018" wire:model="exp_year">
+                      @error('exp_year') <h4 style="color: red">{{$message}}</h4> @enderror
+                    </div>
+                    <div class="col-50">
+                      <label for="cvc">CVC</label>
+                      <input type="password" id="cvc" name="cvc" placeholder="352" wire:model="cvc">
+                      @error('cvc') <h4 style="color: red">{{$message}}</h4> @enderror
+                    </div>
+                  </div>
               </div>
-              <label for="cname">Name on Card</label>
-              <input type="text" id="cname" name="cardname" placeholder="John More Doe">
-              <label for="ccnum">Credit card number</label>
-              <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
-              <label for="expmonth">Exp Month</label>
-              <input type="text" id="expmonth" name="expmonth" placeholder="September">
-              <div class="row">
-                <div class="col-50">
-                  <label for="expyear">Exp Year</label>
-                  <input type="text" id="expyear" name="expyear" placeholder="2018">
-                </div>
-                <div class="col-50">
-                  <label for="cvv">CVV</label>
-                  <input type="text" id="cvv" name="cvv" placeholder="352">
-                </div>
-              </div>
+              @endif
             </div>
             
           </div>
@@ -170,12 +192,22 @@
     <div class="col-25">
       <div class="container-checkout">
         <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>{{Cart::instance('cart')->count() }}</b></span></h4>
-        
-        @foreach (Cart::instance('cart')->content() as $item)
-        <p><a href="{{route('product.details',['slug'=>$item->model->slug])}}"><img src="{{asset('assets/images/products')}}/{{$item->model->image}}" alt="{{$item->model->name}}" width="60px"> {{$item->model->name}}</a> <span class="price">{{$item->model->regular_price}}đ</span></p>
-        @endforeach
-        <p>___________________________________</p>
-        <p>Total <span class="price" style="color:black"><b>{{Cart::instance('cart')->subtotal()}}đ</b></span></p>
+        @if(Session::has('checkout'))
+          @foreach (Cart::instance('cart')->content() as $item)
+          <p>
+            <a href="{{route('product.details',['slug'=>$item->model->slug])}}"><img src="{{asset('assets/images/products')}}/{{$item->model->image}}" alt="{{$item->model->name}}" width="60px"> {{$item->model->name}}</a> 
+            <span class="price">{{($item->model->regular_price) * ($item->qty)}}đ</span>
+            <span class="price" style="margin-right:20px"> x{{$item->qty}}</span> 
+          </p>
+          @endforeach
+          <p>___________________________________</p>
+          <p>Subtotal<span class="price">{{Cart::instance('cart')->subtotal()}}đ</span></p>
+          @if (Session::get('checkout')['discount'] > 0)
+            <p>Discount <span class="price"> - {{Session::get('checkout')['discount']}}đ</span></p>
+          @endif
+          <p>Tax ({{config('cart.tax')}}%) <span class="price"> + {{Session::get('checkout')['tax']}}đ</span></p>
+          <p>Total <span class="price" style="color:black"><b>{{Session::get('checkout')['total']}}đ</b></span></p>
+        @endif
       </div>
     </div>
   </div>

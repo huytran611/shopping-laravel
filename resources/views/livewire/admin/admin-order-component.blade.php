@@ -1,0 +1,61 @@
+<div>
+    <style>
+        nav svg{
+            height: 20px;
+        }
+        nav .hidden{
+            display: block !important;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">  
+    <div class="container" style="padding: 30px 0">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        All Orders
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>OrderId</th>
+                                    <th>Subtotal</th>
+                                    <th>Discount</th>
+                                    <th>Tax</th>
+                                    <th>Total</th>
+                                    <th>Full Name</th>
+                                    <th>Mobile</th>
+                                    <th>Email</th>
+                                    <th>Zipcode</th>
+                                    <th>Status</th>
+                                    <th>Order Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($orders as $order)
+                                    <tr>
+                                        <td>{{$order->id}}</td>
+                                        <td>{{$order->subtotal}}đ</td>
+                                        <td>{{$order->discount}}đ</td>
+                                        <td>{{$order->tax}}đ</td>
+                                        <td>{{$order->total}}đ</td>
+                                        <td>{{$order->fullname}}</td>
+                                        <td>{{$order->mobile}}</td>
+                                        <td>{{$order->email}}</td>
+                                        <td>{{$order->zipcode}}</td>
+                                        <td>{{$order->status}}</td>
+                                        <td>{{$order->created_at}}</td>
+                                        <td><a href="{{route('admin.orderdetails',['order_id'=>$order->id])}}" class="btn btn-info btn-sm">Details</a></td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        {{$orders->links()}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

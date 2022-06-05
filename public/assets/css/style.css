@@ -564,7 +564,6 @@ position: absolute;
 right: 5px;
 background-color: #f1f1f1;
 min-width: 200px;
-overflow: auto;
 box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 z-index: 1;
 text-align: left
@@ -600,7 +599,7 @@ display: block;
 @media (max-width: 800px)
 {
     .dropdown-content-header{
-        position: relative;
+        position: fixed;
         width: 100%;
         text-align: left;
     }
@@ -611,9 +610,9 @@ display: block;
         display: block;
         }
     .dropdown-user{
-        top:100px;
-        position: relative;
-        width: 100%;
+        top:45px;
+        position:fixed;
+        width: 200px;
         text-align: left;
     }
 }

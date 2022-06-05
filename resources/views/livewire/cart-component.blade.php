@@ -104,6 +104,5 @@
                 <h3 style="text-align: center">{{Session::get('checkout_message')}}</h3>
         @endif
         
-      
     </div>
 </div>

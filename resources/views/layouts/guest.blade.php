@@ -46,13 +46,14 @@
                 @auth
                     @if(Auth::user()->utype === 'ADM')
                     <div class="dropdown">
-                        <a href="" style="padding-right: 10px; color:#ff523b">{{Auth::user()->name}}</a>
+                        <a href="" style="padding-right: 10px; color:#CD5C5C">{{Auth::user()->name}}</a>
                         <div class="dropdown-user">
                             <a href="{{route('admin.dashboard')}}">Dashboard</a>
                             <a href="{{route('admin.categories')}}" title="Categories">Categories</a>
                             <a href="{{route('admin.products')}}" title="Products">All Products</a>
                             <a href="{{route('admin.homeslider')}}" title="Home Slider">Manage Home Slider</a>
                             <a href="{{route('admin.coupons')}}" title="All Coupons">All Coupons</a>
+                            <a href="{{route('admin.orders')}}" title="All Orders">All Orders</a>
                             <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
                         </div>
                       </div>
@@ -62,7 +63,7 @@
                     @else
                         
                     <div class="dropdown">
-                        <a href="" style="padding-right: 10px; color:#ff523b">{{Auth::user()->name}}</a>
+                        <a href="" style="padding-right: 10px; color:#CD5C5C">{{Auth::user()->name}}</a>
                         <div class="dropdown-user">
                             <a href="{{route('user.dashboard')}}">Dashboard</a>
                             <br>
