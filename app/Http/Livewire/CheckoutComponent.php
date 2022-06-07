@@ -97,8 +97,8 @@ class CheckoutComponent extends Component
         foreach(Cart::instance('cart')->content() as $item)
         {
             $orderDetail = new OrderDetail();
-            $orderDetail->detail_product_id = $item->id;
-            $orderDetail->detail_order_id = $order->id;
+            $orderDetail->product_id = $item->id;
+            $orderDetail->order_id = $order->id;
             $orderDetail->detail_price = $item->price;
             $orderDetail->detail_quantity = $item->qty;
             $orderDetail->save();

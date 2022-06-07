@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('orderdetails', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('detail_order_id');
-            $table->unsignedBigInteger('detail_product_id');
-            $table->foreign('detail_order_id')->references('id')->on('orders')->onDelete('cascade'); //onDelete('cascade') xóa tham chiếu 
-            $table->foreign('detail_product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->BigInteger('order_id')->unsigned();
+            $table->BigInteger('product_id')->unsigned();
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade'); //onDelete('cascade') xóa tham chiếu 
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->float('detail_price');
             $table->integer('detail_quantity');
             $table->timestamps();

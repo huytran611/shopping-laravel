@@ -25,7 +25,7 @@
                   <a href="{{route('product.details',['slug'=>$product->slug])}}">
                     <h3 class="product-brand">{{$product->name}}</h3>
                 </a>
-                <h3 >{{$product->regular_price}}đ</h3>
+                <h3 >{{number_format($product->regular_price,0,'','.')}}đ</h3>
                 <button class="buy-1" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->regular_price}})">Add to cart</button>
             </div>
             @endforeach

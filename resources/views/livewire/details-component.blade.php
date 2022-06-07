@@ -22,7 +22,7 @@
         <div class="col-2">
             <p>Home / T-shirt</p>
             <h1>{{$product->name}}</h1>
-            <h4>{{$product->regular_price}}</h4>
+            <h4>{{{{number_format($product->regular_price,0,'','.')}}}}</h4>
             <h5>Tình trạng: {{$product->stock_status}}</h5>
             <select name="size">
                 <option value="">Chọn Size</option>

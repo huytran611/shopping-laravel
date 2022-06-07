@@ -201,12 +201,12 @@
           </p>
           @endforeach
           <p>___________________________________</p>
-          <p>Subtotal<span class="price">{{Cart::instance('cart')->subtotal()}}đ</span></p>
+          <p>Subtotal<span class="price">{{number_format(Cart::instance('cart')->subtotal(),0,'','.')}}đ</span></p>
           @if (Session::get('checkout')['discount'] > 0)
-            <p>Discount <span class="price"> - {{Session::get('checkout')['discount']}}đ</span></p>
+            <p>Discount <span class="price"> - {{number_format(Session::get('checkout')['discount'],0,'','.')}}đ</span></p>
           @endif
-          <p>Tax ({{config('cart.tax')}}%) <span class="price"> + {{Session::get('checkout')['tax']}}đ</span></p>
-          <p>Total <span class="price" style="color:black"><b>{{Session::get('checkout')['total']}}đ</b></span></p>
+          <p>Tax ({{config('cart.tax')}}%) <span class="price"> + {{number_format(Session::get('checkout')['tax'],0,'','.')}}đ</span></p>
+          <p>Total <span class="price" style="color:black"><b>{{number_format(Session::get('checkout')['total'],0,'','.')}}đ</b></span></p>
         @endif
       </div>
     </div>

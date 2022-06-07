@@ -19,6 +19,7 @@ use App\Http\Livewire\Admin\AdminHomeSliderComponent;
 use App\Http\Livewire\Admin\AdminOrderComponent;
 use App\Http\Livewire\Admin\AdminOrderDetailsComponent;
 use App\Http\Livewire\Admin\AdminProductComponent;
+use App\Http\Livewire\Admin\AdminSettingComponent;
 use App\Http\Livewire\CartComponent;
 use App\Http\Livewire\CategoryComponent;
 use App\Http\Livewire\CheckoutComponent;
@@ -30,7 +31,10 @@ use App\Http\Livewire\MaleShop;
 use App\Http\Livewire\NewsShop;
 use App\Http\Livewire\SearchComponent;
 use App\Http\Livewire\ThankyouComponent;
+use App\Http\Livewire\User\UserChangePasswordComponent;
 use App\Http\Livewire\User\UserDashboardComponent;
+use App\Http\Livewire\User\UserOrderDetailsComponent;
+use App\Http\Livewire\User\UserOrdersComponent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -63,6 +67,9 @@ Route::middleware([
 // For User/Customer
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/user/dashboard',UserDashboardComponent::class)->name('user.dashboard');
+    Route::get('/user/orders',UserOrdersComponent::class)->name('user.orders');
+    Route::get('/user/orders/{order_id}',UserOrderDetailsComponent::class)->name('user.orderdetails');
+    Route::get('/user/change-password',UserChangePasswordComponent::class)->name('user.changepassword');
 });
 
 //For Admin
@@ -87,6 +94,8 @@ Route::middleware(['auth:sanctum', 'verified','authadmin'])->group(function(){
     //Orders
     Route::get('/admin/orders',AdminOrderComponent::class)->name('admin.orders');
     Route::get('/admin/orders/{order_id}',AdminOrderDetailsComponent::class)->name('admin.orderdetails');
+
+    Route::get('/admin/settings',AdminSettingComponent::class)->name('admin.settings');
 });
 
 //--------------------------------------

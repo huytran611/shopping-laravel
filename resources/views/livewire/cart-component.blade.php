@@ -31,7 +31,7 @@
                     <button class="btn-decrease" wire:click.prevent="decreaseQuantity('{{$item->rowId}}')">-</button>
                 </td>
                 
-                <td>{{$item->subtotal}}đ</td>
+                <td>{{number_format($item->subtotal,0,'','.')}}đ</td>
 
             </tr>
             @endforeach
@@ -44,32 +44,32 @@
         <table>
             <tr>
                 <td>Tổng</td>
-                <td>{{Cart::instance('cart')->subtotal()}}đ</td>
+                <td>{{number_format(Cart::instance('cart')->subtotal(),0,'','.')}}đ</td>
                 @if (Session::has('coupon'))
                     <tr>
                         <td>Discount ({{Session::get('coupon')['code']}}) <a href="#" wire:click.prevent="removeCoupon">Xóa</a></td>
-                        <td>-{{number_format($discount,2)}}đ</td>
+                        <td>-{{number_format($discount,0,'','.')}}đ</td>
                     </tr>
                     <tr>
                         <td>Tax ({{config('cart.tax')}}%)</td>
-                        <td>{{number_format($taxAfterDiscount,2)}}đ</td>
+                        <td>{{number_format($taxAfterDiscount,0,'','.')}}đ</td>
                     </tr> 
                     <tr>
                         <td>Tổng tiền với discount ({{config('cart.tax')}}%)</td>
-                        <td>{{number_format($subtotalAfterDiscount,2)}}đ</td>
+                        <td>{{number_format($subtotalAfterDiscount,0,'','.')}}đ</td>
                     </tr>
                     <tr>
                         <td>Tổng cộng</td>
-                        <td>{{number_format($totalAfterDiscount,2)}}đ</td>
+                        <td>{{number_format($totalAfterDiscount,0,'','.')}}đ</td>
                     </tr>
                 @else
                     <tr>
                         <td>Thuế</td>
-                        <td>{{Cart::instance('cart')->tax()}}đ</td>
+                        <td>{{number_format(Cart::instance('cart')->tax(),0,'','.')}}đ</td>
                     </tr>
                     <tr>
                         <td>Tổng cộng</td>
-                        <td>{{Cart::instance('cart')->total()}}đ</td>
+                        <td>{{number_format(Cart::instance('cart')->total(),0,'','.')}}đ</td>
                     </tr>
                 @endif
             </tr>

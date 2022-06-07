@@ -12,6 +12,7 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <script src="https://kit.fontawesome.com/7a0f399409.js" crossorigin="anonymous"></script>
+    
 </head>
 <body>
     <div class="header">
@@ -54,6 +55,7 @@
                             <a href="{{route('admin.homeslider')}}" title="Home Slider">Manage Home Slider</a>
                             <a href="{{route('admin.coupons')}}" title="All Coupons">All Coupons</a>
                             <a href="{{route('admin.orders')}}" title="All Orders">All Orders</a>
+                            <a href="{{route('admin.settings')}}" title="Settings">Settings</a>
                             <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
                         </div>
                       </div>
@@ -63,9 +65,11 @@
                     @else
                         
                     <div class="dropdown">
-                        <a href="" style="padding-right: 10px; color:#CD5C5C">{{Auth::user()->name}} <i class="fa-solid fa-caret-down"></i></a>
+                        <a style="padding-right: 10px; color:#CD5C5C">{{Auth::user()->name}} <i class="fa-solid fa-caret-down"></i></a>
                         <div class="dropdown-user">
-                            <a href="{{route('user.dashboard')}}">Dashboard</a>
+                            <a title="Dash Board" href="{{route('user.dashboard')}}">Dashboard</a>
+                            <a title="My Orders" href="{{route('user.orders')}}">My Orders</a>
+                            <a title="Change Password" href="{{route('user.changepassword')}}">Change Password</a>
                             <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
                         </div>
                       </div>
@@ -135,7 +139,9 @@
         </div>
     </div> 
  @livewireScripts
-<script src="{{ asset('assets/js/jquery-1.12.4.minb8ff.js')}}"></script>
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script src="{{ asset('assets/js/functions.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
 <script src="{{ asset('assets/js/scripts.js')}}"></script>

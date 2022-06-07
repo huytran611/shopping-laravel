@@ -65,9 +65,8 @@
                     <div class="dropdown">
                         <a href="" style="padding-right: 10px; color:#CD5C5C">{{Auth::user()->name}}</a>
                         <div class="dropdown-user">
-                            <a href="{{route('user.dashboard')}}">Dashboard</a>
-                            <br>
-                            <br>
+                            <a title="Dash Board" href="{{route('user.dashboard')}}">Dashboard</a>
+                            <a title="My Orders" href="{{route('user.orders')}}">My Orders</a>
                             <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
                         </div>
                       </div>
