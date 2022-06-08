@@ -39,7 +39,7 @@
                     </li>
                     <li><a href="/sale">SALE</a></li>
                     <li><a href="/accessories">ACCESSORIES</a></li>
-                    <li><a href="/about">ABOUT</a></li>
+                    <li><a href="/about-us">ABOUT</a></li>
                 </ul>
             </nav>
             
@@ -55,7 +55,7 @@
                             <a href="{{route('admin.homeslider')}}" title="Home Slider">Manage Home Slider</a>
                             <a href="{{route('admin.coupons')}}" title="All Coupons">All Coupons</a>
                             <a href="{{route('admin.orders')}}" title="All Orders">All Orders</a>
-                            <a href="{{route('admin.settings')}}" title="Settings">Settings</a>
+                            <a href="{{route('admin.settings')}}" title="Settings">About Us Settings</a>
                             <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
                         </div>
                       </div>

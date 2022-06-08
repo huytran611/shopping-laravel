@@ -677,6 +677,14 @@ input:focus{
         display: block;
     }
 }
+
+
+.detail-media{
+    display: inline-block;
+    width: 54.0229885057%;
+    float: left;
+    /*padding-right: 3px;*/
+}
   /*-------------------------------------------*/
   
 #content {

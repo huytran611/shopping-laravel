@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Livewire\AboutUsComponent as LivewireAboutUsComponent;
 use App\Http\Livewire\AccesoriesShop;
 use App\Http\Livewire\Account;
 use App\Http\Livewire\AccountRegister;
+use App\Http\Livewire\Admin\AboutUsComponent;
+use App\Http\Livewire\Admin\AdminAboutUsComponent;
 use App\Http\Livewire\Admin\AdminAddCategoryComponent;
 use App\Http\Livewire\Admin\AdminAddCouponComponent;
 use App\Http\Livewire\Admin\AdminAddHomeSliderComponent;
@@ -35,6 +38,7 @@ use App\Http\Livewire\User\UserChangePasswordComponent;
 use App\Http\Livewire\User\UserDashboardComponent;
 use App\Http\Livewire\User\UserOrderDetailsComponent;
 use App\Http\Livewire\User\UserOrdersComponent;
+use App\Models\AboutUs;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -119,6 +123,8 @@ Route::get('/search',SearchComponent::class)->name('product.search');
 Route::get('/checkout',CheckoutComponent::class)->name('checkout');
 
 Route::get('/thank-you',ThankyouComponent::class)->name('thankyou');
+
+Route::get('/about-us', LivewireAboutUsComponent::class)->name('about');
 
 //--------------------------------------
 
