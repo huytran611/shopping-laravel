@@ -33,7 +33,10 @@
               <a href="{{route('product.details',['slug'=>$sproduct->slug])}}">
                 <h3 class="product-brand">{{$sproduct->name}}</h3>
               </a>
-            <h3 class="strikethrough">{{number_format($sproduct->regular_price,0,'','.')}}đ</h3><span><h3>{{$sproduct->sale_price}}đ</h3></span>
+              <div style="flex-wrap: wrap; display:flex;margin-left:100px">
+                <h3 style="text-decoration:2px red line-through;">{{number_format($sproduct->regular_price,0,'','.')}}đ</h3>
+                <h3 style="margin-left: 7px">{{number_format($sproduct->sale_price,0,'','.')}}đ</h3>
+              </div>
             <button class="buy-1" wire:click.prevent="store({{$sproduct->id}},'{{$sproduct->name}}',{{$sproduct->regular_price}})">Buy Now</button>
           </div>
         @endforeach

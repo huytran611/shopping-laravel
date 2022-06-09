@@ -1,29 +1,36 @@
+
 <div>
     <div class="small-container single-product">
         <div class="row">
             <div class="col-2">
                 <img src="{{asset('assets/images/products')}}/{{$product->image}}" alt="" width="100%" id="productimg">
-            </div>
-            <div class="col-2">
                 <div class="small-img-row">
                     <div class="small-img-col">
                         <img src="{{asset('assets/images/products')}}/{{$product->image}}" alt="" class="small-img">
                     </div>
-                    <div class="small-img-col">
-                        <img src="{{asset('assets/images/gallery-2.jpg')}}" alt="" class="small-img">
-                    </div>
-                    <div class="small-img-col">
-                        <img src="{{asset('assets/images/gallery-3.jpg')}}" alt="" class="small-img">
-                    </div>
-                    <div class="small-img-col">
-                        <img src="{{asset('assets/images/gallery-4.jpg')}}" alt="" class="small-img">
-                    </div>
+                    @php
+                        $images = explode(",",$product->images);
+                    @endphp
+                    @foreach ($images as $image)
+                        @if ($image)
+                        <div class="small-img-col">
+                            <img src="{{asset('assets/images/products')}}/{{$product->image}}" alt="" class="small-img">
+                        </div>
+                        @endif
+                    @endforeach
+                    
                 </div>
             </div>
             <div class="col-2">
-                <p>Home / T-shirt</p>
                 <h1>{{$product->name}}</h1>
-                <h4>{{number_format($product->regular_price,0,'','.')}}</h4>
+                @if ($product->sale_price > 0)
+                <div style="flex-wrap: wrap; display:flex;margin-left:100px">
+                <h3 style="text-decoration:2px red line-through;">{{number_format($product->regular_price,0,'','.')}}đ</h3>
+                <h3 style="margin-left: 5px">{{$product->sale_price}}đ</h3>
+                </div>
+                @else
+                <h3>{{number_format($product->regular_price,0,'','.')}}đ</h3>
+                @endif 
                 <h5>Tình trạng: {{$product->stock_status}}</h5>
                 <select name="size">
                     <option value="">Chọn Size</option>
@@ -59,7 +66,14 @@
                     <a href="{{route('product.details',['slug'=>$r_products->slug])}}">
                     <h3 class="product-brand">{{$r_products->name}}</h3>
                 </a>
-                <h3>${{$r_products->regular_price}}</span><span class="actual-price">{{$r_products->sale_price}}</span></h3>
+                @if ($r_products->sale_price > 0)
+                    <div style="flex-wrap: wrap; display:flex;margin-left:100px">
+                        <h3 style="text-decoration:2px red line-through;">{{$r_products->regular_price}}đ</h3>
+                        <h3 style="margin-left: 5px">{{$r_products->sale_price}}đ</h3>
+                    </div>
+                @else
+                    <h3>{{$r_products->regular_price}}đ</span><span class="actual-price"></h3>
+                @endif 
                 <button class="buy-1" wire:click.prevent="store({{$r_products->id}},'{{$r_products->name}}',{{$r_products->regular_price}})">Buy Now</button>
                 </div>
                 @endforeach    
