@@ -14,7 +14,7 @@ class AdminOrderComponent extends Component
         $order->status = $status;
         if($status == "delivered")
         {
-            $order->deliverd_date = DB::raw('CURRENT_DATE');
+            $order->delivered_date = DB::raw('CURRENT_DATE');
         }
         else if($status == 'canceled')
         {

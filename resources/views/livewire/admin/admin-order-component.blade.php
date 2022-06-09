@@ -40,10 +40,10 @@
                                 @foreach ($orders as $order)
                                     <tr>
                                         <td>{{$order->id}}</td>
-                                        <td>{{$order->subtotal}}đ</td>
-                                        <td>{{$order->discount}}đ</td>
-                                        <td>{{$order->tax}}đ</td>
-                                        <td>{{$order->total}}đ</td>
+                                        <td>{{number_format($order->subtotal,0,'','.')}}đ</td>
+                                        <td>{{number_format($order->discount,0,'','.')}}đ</td>
+                                        <td>{{number_format($order->tax,0,'','.')}}đ</td>
+                                        <td>{{number_format($order->total,0,'','.')}}đ</td>
                                         <td>{{$order->fullname}}</td>
                                         <td>{{$order->mobile}}</td>
                                         <td>{{$order->email}}</td>

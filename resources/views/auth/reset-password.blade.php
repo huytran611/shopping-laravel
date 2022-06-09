@@ -1,4 +1,4 @@
-<x-guest-layout>
+{{--<x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
@@ -33,4 +33,24 @@
             </div>
         </form>
     </x-jet-authentication-card>
+</x-guest-layout>
+--}}
+
+<x-guest-layout>
+    <x-jet-validation-errors class="mb-4"/>
+    <form action="{{route('password.update')}}" method="POST">
+        @csrf
+        <input type="hidden" name="token" value="{{ $request->route('token') }}">
+          <div class="account-container">
+            <h3 class="head-login">Đặt lại mật khẩu</h3>
+              <h4 for="uname"><b>Email</b></h4>
+              <input type="text" placeholder="Enter Email" name="email" value="{{$request->email}}" required autofocus>
+                <br>
+                <h4 for="psw"><b>Mật khẩu</b></h4>
+                <input type="password" placeholder="Nhập mật khẩu" name="password" required autocomplete="new-password">
+                  <h4 for="confirmpsw"><b>Xác nhận lại mật khẩu</b></h4>
+                  <input type="password" placeholder="Nhập lại mật khẩu" name="password_confirmation" required autocomplete="new-password">
+              <button type="submit">Đặt lại mật khẩu</button>
+              </div>
+            </div>
 </x-guest-layout>

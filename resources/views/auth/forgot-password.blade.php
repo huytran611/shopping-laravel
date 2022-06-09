@@ -1,4 +1,4 @@
-<x-guest-layout>
+{{--<x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
@@ -31,4 +31,25 @@
             </div>
         </form>
     </x-jet-authentication-card>
+</x-guest-layout>
+--}}
+
+<x-guest-layout>
+    @if (session('status'))
+        <div class="mb-4 font-medium text-sm text-green-600">
+            {{ session('status') }}
+        </div>
+    @endif
+    <x-jet-validation-errors class="mb-4"/>
+    <form action="{{route('password.email')}}" method="POST">
+        @csrf
+          <div class="account-container">
+            <h3 class="head-login">Quên mật khẩu</h3>
+              <h4 for="uname"><b>Email</b></h4>
+              <input type="text" placeholder="Enter Email" name="email" :value="old('email')" required autofocus>
+                <br>
+              
+              <button type="submit">Submit</button>
+              </div>
+            </div>
 </x-guest-layout>

@@ -5,20 +5,16 @@
             <div class="col-2">
                 <img src="{{asset('assets/images/products')}}/{{$product->image}}" alt="" width="100%" id="productimg">
                 <div class="small-img-row">
-                    <div class="small-img-col">
-                        <img src="{{asset('assets/images/products')}}/{{$product->image}}" alt="" class="small-img">
-                    </div>
                     @php
                         $images = explode(",",$product->images);
                     @endphp
                     @foreach ($images as $image)
                         @if ($image)
                         <div class="small-img-col">
-                            <img src="{{asset('assets/images/products')}}/{{$product->image}}" alt="" class="small-img">
+                            <img src="{{asset('assets/images/products')}}/{{$image}}" alt="" class="small-img">
                         </div>
                         @endif
                     @endforeach
-                    
                 </div>
             </div>
             <div class="col-2">
