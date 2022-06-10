@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\OrderMail;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\Order;
@@ -10,6 +11,7 @@ use App\Models\Transaction;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Exception;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Mail;
 
 class CheckoutComponent extends Component
 {
@@ -175,7 +177,7 @@ class CheckoutComponent extends Component
             }
 
         }
-
+        $this->sendOrderConfirmationMail($order);
         
     }
 
@@ -194,6 +196,11 @@ class CheckoutComponent extends Component
         $transaction->mode = $this->paymentmethod;
         $transaction->status = $status;
         $transaction->save();
+    }
+
+    public function sendOrderConfirmationMail($order)
+    {
+        Mail::to($order->email)->send(new OrderMail($order));
     }
 
     public function verifyForCheckout()

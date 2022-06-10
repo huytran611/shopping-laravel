@@ -342,7 +342,8 @@ input {
 .cancelbtn {
 width: auto;
 padding: 10px 18px;
-background-color: #ff7d7d;
+color: #fff;
+background-color: #CD5C5C;
 }
 .select-orderby{
     width:150px; 

@@ -2,9 +2,12 @@
 <div>
     <div class="small-container single-product">
         <div class="row">
-            <div class="col-2">
+            <div class="col-2" wire:ignore>
                 <img src="{{asset('assets/images/products')}}/{{$product->image}}" alt="" width="100%" id="productimg">
                 <div class="small-img-row">
+                    <div class="small-img-col">
+                        <img src="{{asset('assets/images/products')}}/{{$product->image}}" alt="" width="100%" class="small-img">
+                    </div>
                     @php
                         $images = explode(",",$product->images);
                     @endphp
@@ -47,6 +50,9 @@
                     @endforeach  
                 </select>
                 <input class="input-cart" type="text" value="1">
+                <button class="btn-increase" wire:click.prevent="increaseQuantity('{{$item->rowId}}')">+</button>
+                <button class="btn-decrease" wire:click.prevent="decreaseQuantity('{{$item->rowId}}')">-</button>
+                <br>
                 <a href="" class="btn" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->regular_price}})">Thêm vào giỏ</a>
                 <h3>Thông tin sản phẩm</h3>
                 <p>{{$product->short_description}}</p>
