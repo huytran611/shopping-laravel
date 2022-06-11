@@ -69,6 +69,7 @@
                         <div class="dropdown-user">
                             <a title="Dash Board" href="{{route('user.dashboard')}}">Dashboard</a>
                             <a title="My Orders" href="{{route('user.orders')}}">My Orders</a>
+                            <a title="My Profile" href="{{route('user.profile')}}">My Profile</a>
                             <a title="Change Password" href="{{route('user.changepassword')}}">Change Password</a>
                             <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
                         </div>

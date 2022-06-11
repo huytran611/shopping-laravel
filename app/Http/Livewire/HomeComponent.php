@@ -9,6 +9,7 @@ use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Auth;
 
 class HomeComponent extends Component
 {   
@@ -29,6 +30,11 @@ class HomeComponent extends Component
         $categories = Category::whereIn('id',$cats)->get();
         $no_of_products = $category->no_of_products;
         $sproducts = Product::where('sale_price','>',0)->inRandomOrder()->get()->take(4);
+        
+        if(Auth::check())
+        {
+            Cart::instance('cart')->restore(Auth::user()->email);
+        }
         return view('livewire.home-component',['lproducts'=>$lproducts,'sliders'=>$sliders,'categories'=>$categories,'no_of_products'=>$no_of_products,'sproducts'=>$sproducts])->layout('homepage.index');
     }
 }

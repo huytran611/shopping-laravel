@@ -8,7 +8,7 @@ use Livewire\WithPagination;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Models\Category;
 use Illuminate\Pagination\Paginator;
-
+use Illuminate\Support\Facades\Auth;
 
 class NewsShop extends Component
 {
@@ -49,6 +49,11 @@ class NewsShop extends Component
         }
 
         $categories = Category::all();
+
+        if(Auth::check())
+        {
+            Cart::instance('cart')->store(Auth::user()->email);
+        }
         
         return view('livewire.news-shop',['products'=>$products,'categories'=>$categories])->layout('homepage.index');
     }
