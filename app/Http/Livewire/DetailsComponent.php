@@ -13,17 +13,25 @@ class DetailsComponent extends Component
 {
     use WithPagination;
     public $slug;
+    public $qty;
 
-    public function increaseQuantity($rowId)
+    public function increaseQuantity()
     {
-        $product = Cart::get($rowId);
-        $qty = $product->qty + 1;
-        Cart::update($rowId,$qty);
+        $this->qty++;
+    }
+
+    public function decreaseQuantity()
+    {
+        if($this->qty > 1)
+        {
+            $this->qty--;
+        }
     }
 
     public function mount($slug)
     {
         $this->slug = $slug;
+        $this->qty = 1;
     }
     public function store($product_id,$product_name,$product_price)
     {
@@ -34,10 +42,10 @@ class DetailsComponent extends Component
     }
     public function render()
     {
-        $size = ProductSize::all();
+
         $product = Product::where('slug', $this->slug)->first();
         $popular_products = Product::inRandomOrder()->limit(5)->get();
         $related_products = Product::where('category_id', $product->category_id)->inRandomOrder()->limit(4)->get();
-        return view('livewire.details-component',['product'=>$product, 'popular_products'=>$popular_products,'related_products'=>$related_products,'size'=>$size])->layout('homepage.index');
+        return view('livewire.details-component',['product'=>$product, 'popular_products'=>$popular_products,'related_products'=>$related_products])->layout('homepage.index');
     }
 }

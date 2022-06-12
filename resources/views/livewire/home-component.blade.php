@@ -28,7 +28,7 @@
         @foreach ($sproducts as $sproduct)
           <div class="content">
               <a href="{{route('product.details',['slug'=>$sproduct->slug])}}">
-                <img src="{{asset('assets/images/products')}}/{{$sproduct->image}}" style="height: 400px; width:300px"  alt="{{$sproduct->name}}">
+                <img src="{{asset('assets/images/products')}}/{{$sproduct->image}}" style="height: 400px; width:290px"  alt="{{$sproduct->name}}">
               </a>
               <a href="{{route('product.details',['slug'=>$sproduct->slug])}}">
                 <h3 class="product-brand">{{$sproduct->name}}</h3>
@@ -49,7 +49,7 @@
   @foreach ($lproducts as $lproduct)
     <div class="content">
         <a href="{{route('product.details',['slug'=>$lproduct->slug])}}">
-          <img src="{{asset('assets/images/products')}}/{{$lproduct->image}}" style="height: 400px; width:300px"  alt="{{$lproduct->name}}">
+          <img src="{{asset('assets/images/products')}}/{{$lproduct->image}}" style="height: 400px; width:290px"  alt="{{$lproduct->name}}">
         </a>
         <a href="{{route('product.details',['slug'=>$lproduct->slug])}}">
           <h3 class="product-brand">{{$lproduct->name}}</h3>

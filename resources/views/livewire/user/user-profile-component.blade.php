@@ -24,6 +24,7 @@
                         <p><b>Thành phố: </b>{{$user->profile->city}}</p>
                         <p><b>Quốc tịch: </b>{{$user->profile->country}}</p>
                         <p><b>Zipcode: </b>{{$user->profile->zipcode}}</p>
+                        <a href="{{route('user.editprofile')}}" class="btn btn-info pull-right">Update Profile</a>
                     </div>
                 </div>
             </div>

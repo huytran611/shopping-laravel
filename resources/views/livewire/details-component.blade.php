@@ -31,27 +31,25 @@
                 <h3>{{number_format($product->regular_price,0,'','.')}}đ</h3>
                 @endif 
                 <h5>Tình trạng: {{$product->stock_status}}</h5>
-                <select name="size">
-                    <option value="">Chọn Size</option>
-                    @foreach ($size as $item)
-                        @if ($item->product_id == $product->id && $item->option_group_id == 1)
-                        <option value="size">{{$item->option_id}}
-                        </option>
-                        @endif
-                    @endforeach
-                        
-                </select>
-                <select name="color">
-                    <option value="">Chọn Màu</option>
-                    @foreach ($size as $item)
-                        @if ($item->product_id == $product->id && $item->option_group_id == 2)
-                        <option value="size">{{$item->option_id}}</option>
-                        @endif
-                    @endforeach  
-                </select>
-                <input class="input-cart" type="text" value="1">
-                <button class="btn-increase" wire:click.prevent="increaseQuantity('{{$item->rowId}}')">+</button>
-                <button class="btn-decrease" wire:click.prevent="decreaseQuantity('{{$item->rowId}}')">-</button>
+
+                @foreach ($product->attributeValues->unique('product_option_id') as $av)
+                    <div class="row" style="margin-top:20px">
+                        <div class="col-xs-2">
+                            <p>{{$av->productAttribute->name}}</p>
+                        </div>
+                        <div class="col-xs-10">
+                            <select style="width:200px" wire:model="satt.{{$av->productAttribute->name}}">
+                                @foreach ($av->productAttribute->attributeValues->where('product_id',$product->id) as $pav)
+                                    <option value="{{$pav->id}}">{{$pav->value}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                @endforeach
+                
+                <input class="input-cart" type="text" value="0" wire:model="qty">
+                <button class="btn-increase" wire:click.prevent="increaseQuantity">+</button>
+                <button class="btn-decrease" wire:click.prevent="decreaseQuantity">-</button>
                 <br>
                 <a href="" class="btn" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->regular_price}})">Thêm vào giỏ</a>
                 <h3>Thông tin sản phẩm</h3>

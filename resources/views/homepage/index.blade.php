@@ -51,10 +51,11 @@
                         <div class="dropdown-user">
                             <a href="{{route('admin.dashboard')}}">Dashboard</a>
                             <a href="{{route('admin.categories')}}" title="Categories">Categories</a>
-                            <a href="{{route('admin.products')}}" title="Products">All Products</a>
+                            <a href="{{route('admin.products')}}" title="Products">Products</a>
                             <a href="{{route('admin.homeslider')}}" title="Home Slider">Manage Home Slider</a>
-                            <a href="{{route('admin.coupons')}}" title="All Coupons">All Coupons</a>
-                            <a href="{{route('admin.orders')}}" title="All Orders">All Orders</a>
+                            <a href="{{route('admin.coupons')}}" title="Coupons">Coupons</a>
+                            <a href="{{route('admin.orders')}}" title="Orders">Orders</a>
+                            <a href="{{route('admin.attributes')}}" title="Attribute">Attributes</a>
                             <a href="{{route('admin.settings')}}" title="Settings">About Us Settings</a>
                             <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
                         </div>

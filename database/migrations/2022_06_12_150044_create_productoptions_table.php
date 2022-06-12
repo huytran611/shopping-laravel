@@ -15,12 +15,11 @@ return new class extends Migration
     {
         Schema::create('productoptions', function (Blueprint $table) {
             $table->id();
-            $table->double('option_price_increment');
-            $table->integer('option_group_id');
+            $table->bigInteger('product_option_id')->unsigned()->nullable();
+            $table->string('value');
             $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('option_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->foreign('option_id')->references('id')->on('options')->onDelete('cascade');
+            $table->foreign('product_option_id')->references('id')->on('optiongroups')->onDelete('cascade');
             $table->timestamps();
         });
     }

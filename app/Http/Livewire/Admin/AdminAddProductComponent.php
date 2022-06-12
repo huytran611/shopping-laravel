@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\OptionGroups;
+use App\Models\ProductOptions;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
@@ -25,10 +27,29 @@ class AdminAddProductComponent extends Component
     public $category_id;
     public $images;
 
+    public $attribute;
+    public $inputs = [];
+    public $attribute_arr = [];
+    public $attribute_values;
+
     public function mount()
     {
         $this->stock_status = 'instock';
         $this->featured = 0;
+    }
+
+    public function add()
+    {
+        if(!in_array($this->attribute,$this->attribute_arr))
+        {
+            array_push($this->inputs,$this->attribute);
+            array_push($this->attribute_arr,$this->attribute);
+        }
+    }
+
+    public function remove($attribute)
+    {
+        unset($this->inputs[$attribute]);
     }
 
     public function generateSlug()
@@ -98,12 +119,27 @@ class AdminAddProductComponent extends Component
 
         $product->category_id = $this->category_id;
         $product->save();
+
+        foreach($this->attribute_values as $key=>$attribute_value)
+        {
+            $avalues = explode(",",$attribute_value);
+            foreach($avalues as $avalue)
+            {
+                $attr_value = new ProductOptions();
+                $attr_value->product_option_id = $key;
+                $attr_value->value = $avalue;
+                $attr_value->product_id = $product->id;
+                $attr_value->save();
+            }
+        }
+
         session()->flash('message','Product has been created successfully');
     }
 
     public function render()
     {
         $categories = Category::all();
-        return view('livewire.admin.admin-add-product-component',['categories'=>$categories])->layout('homepage.index');
+        $pattributes = OptionGroups::all();
+        return view('livewire.admin.admin-add-product-component',['categories'=>$categories,'pattributes'=>$pattributes])->layout('homepage.index');
     }
 }
