@@ -18,6 +18,6 @@ class Product extends Model
 
     public function attributeValues()
     {
-        return $this->hasMany(ProductOptions::class,'product_id');
+        return $this->hasMany(AttributeValue::class,'product_id');
     }
 }

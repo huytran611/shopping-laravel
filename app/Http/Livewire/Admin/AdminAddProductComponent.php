@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\AttributeValue;
 use App\Models\Category;
 use App\Models\Product;
-use App\Models\OptionGroups;
-use App\Models\ProductOptions;
+use App\Models\ProductAttribute;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
@@ -125,8 +125,8 @@ class AdminAddProductComponent extends Component
             $avalues = explode(",",$attribute_value);
             foreach($avalues as $avalue)
             {
-                $attr_value = new ProductOptions();
-                $attr_value->product_option_id = $key;
+                $attr_value = new AttributeValue();
+                $attr_value->product_attribute_id = $key;
                 $attr_value->value = $avalue;
                 $attr_value->product_id = $product->id;
                 $attr_value->save();
@@ -139,7 +139,7 @@ class AdminAddProductComponent extends Component
     public function render()
     {
         $categories = Category::all();
-        $pattributes = OptionGroups::all();
+        $pattributes = ProductAttribute::all();
         return view('livewire.admin.admin-add-product-component',['categories'=>$categories,'pattributes'=>$pattributes])->layout('homepage.index');
     }
 }

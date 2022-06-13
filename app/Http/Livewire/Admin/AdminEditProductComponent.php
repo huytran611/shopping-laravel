@@ -3,9 +3,9 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\Category;
-use App\Models\OptionGroups;
+use App\Models\ProductAttribute;
 use App\Models\Product;
-use App\Models\ProductOptions;
+use App\Models\AttributeValue;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
@@ -54,12 +54,12 @@ class AdminEditProductComponent extends Component
         $this->images = explode(",",$product->images);
         $this->category_id = $product->category_id;
         $this->product_id = $product->id;
-        $this->inputs = $product->attributeValues->where('product_id',$product->id)->unique('product_option_id')->pluck('product_option_id');
-        $this->attribute_arr = $product->attributeValues->where('product_id',$product->id)->unique('product_option_id')->pluck('product_option_id');     
+        $this->inputs = $product->attributeValues->where('product_id',$product->id)->unique('product_attribute_id')->pluck('product_attribute_id');
+        $this->attribute_arr = $product->attributeValues->where('product_id',$product->id)->unique('product_attribute_id')->pluck('product_attribute_id');
 
         foreach($this->attribute_arr as $a_arr)
         {
-            $allAttributeValue = ProductOptions::where('product_id', $product->id)->where('product_option_id',$a_arr)->get()->pluck('value');
+            $allAttributeValue = AttributeValue::where('product_id', $product->id)->where('product_attribute_id',$a_arr)->get()->pluck('value');
             $valueString = '';
             foreach($allAttributeValue as $value)
             {
@@ -176,14 +176,14 @@ class AdminEditProductComponent extends Component
         $product->category_id = $this->category_id;
         $product->save();
 
-        ProductOptions::where('product_id',$product->id)->delete();
+        AttributeValue::where('product_id',$product->id)->delete();
         foreach($this->attribute_values as $key=>$attribute_value)
         {
             $avalues = explode(",",$attribute_value);
             foreach($avalues as $avalue)
             {
-                $attr_value = new ProductOptions();
-                $attr_value->product_option_id = $key;
+                $attr_value = new AttributeValue();
+                $attr_value->product_attribute_id = $key;
                 $attr_value->value = $avalue;
                 $attr_value->product_id = $product->id;
                 $attr_value->save();
@@ -194,7 +194,7 @@ class AdminEditProductComponent extends Component
     public function render()
     {
         $categories = Category::all();
-        $pattributes = OptionGroups::all();
+        $pattributes = ProductAttribute::all();
         return view('livewire.admin.admin-edit-product-component',['categories'=>$categories,'pattributes'=>$pattributes])->layout('homepage.index');
     }
 }

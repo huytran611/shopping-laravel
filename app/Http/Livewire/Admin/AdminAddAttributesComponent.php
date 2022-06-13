@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\OptionGroups;
+use App\Models\ProductAttribute;
 use Livewire\Component;
 
 class AdminAddAttributesComponent extends Component
@@ -23,8 +23,8 @@ class AdminAddAttributesComponent extends Component
             'name' => 'required'
         ]);
 
-        $pattribute = new OptionGroups();
-        $pattribute->option_group_name = $this->name;
+        $pattribute = new ProductAttribute();
+        $pattribute->attribute_name = $this->name;
         $pattribute->save();
         session()->flash('message','Attribute has been created successfully');
     }

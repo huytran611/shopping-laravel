@@ -32,13 +32,13 @@
                 @endif 
                 <h5>Tình trạng: {{$product->stock_status}}</h5>
 
-                @foreach ($product->attributeValues->unique('product_option_id') as $av)
-                    <div class="row" style="margin-top:20px">
-                        <div class="col-xs-2">
-                            <p>{{$av->productAttribute->name}}</p>
+                @foreach ($product->attributeValues->unique('product_attribute_id') as $av)
+                    <div style="margin-top:20px">
+                        <div>
+                            <h5>{{$av->productAttribute->attribute_name}}</h5>
                         </div>
-                        <div class="col-xs-10">
-                            <select style="width:200px" wire:model="satt.{{$av->productAttribute->name}}">
+                        <div >
+                            <select style="width:100px" wire:model="satt.{{$av->productAttribute->attribute_name}}">
                                 @foreach ($av->productAttribute->attributeValues->where('product_id',$product->id) as $pav)
                                     <option value="{{$pav->id}}">{{$pav->value}}</option>
                                 @endforeach
@@ -46,12 +46,12 @@
                         </div>
                     </div>
                 @endforeach
-                
+                <h5 style="margin-top:20px">Số lượng</h5>
                 <input class="input-cart" type="text" value="0" wire:model="qty">
                 <button class="btn-increase" wire:click.prevent="increaseQuantity">+</button>
                 <button class="btn-decrease" wire:click.prevent="decreaseQuantity">-</button>
                 <br>
-                <a href="" class="btn" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->regular_price}})">Thêm vào giỏ</a>
+                <a href="" class="btn" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$qty}},{{$product->regular_price}},'{{$satt['value']}}')">Thêm vào giỏ</a>
                 <h3>Thông tin sản phẩm</h3>
                 <p>{{$product->short_description}}</p>
             </div>

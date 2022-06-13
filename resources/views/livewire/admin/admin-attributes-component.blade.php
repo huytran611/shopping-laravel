@@ -37,7 +37,7 @@
                                 @foreach ($pattributes as $pattribute)
                                     <tr>
                                         <td>{{$pattribute->id}}</td>
-                                        <td>{{$pattribute->option_group_name}}</td>
+                                        <td>{{$pattribute->attribute_name}}</td>
                                         <td>{{$pattribute->created_at}}</td>
                                         <td>
                                             <a href="{{route('admin.edit_attribute',['attribute_id'=>$pattribute->id])}}"> <i class="fa fa-edit fa-2x text-info"></i></a>

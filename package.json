@@ -21,6 +21,7 @@
         "tailwindcss": "^3.0.0"
     },
     "dependencies": {
+        "chosen-js": "^1.8.7",
         "jquery-autocomplete": "^1.2.8"
     }
 }

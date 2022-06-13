@@ -18,6 +18,13 @@
                         <img src="{{asset('assets/images/products')}}/{{$item->model->image}}" alt="{{$item->model->name}}">
                         <div>
                             <a href="{{route('product.details',['slug'=>$item->model->slug])}}"><p>{{$item->model->name}}</p></a>
+
+                            @foreach ($item->options as $key=>$value)
+                                <div style="vertical-align: middle;width:180px;">
+                                    <h5><b>{{$key}}:{{$value}}</b></h5>
+                                </div>
+                            @endforeach
+
                             <small>{{$item->model->regular_price}}đ</small>
                             <br>
                             <a href="" wire:click.prevent="delete('{{$item->rowId}}')">Xóa</a>

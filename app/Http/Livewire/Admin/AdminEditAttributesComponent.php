@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\OptionGroups;
+use App\Models\ProductAttribute;
 use Livewire\Component;
 
 class AdminEditAttributesComponent extends Component
@@ -12,7 +12,7 @@ class AdminEditAttributesComponent extends Component
 
     public function mount($attribute_id)
     {
-        $pattribute = OptionGroups::find($attribute_id);
+        $pattribute = ProductAttribute::find($attribute_id);
         $this->attribute_id = $pattribute->id;
         $this->name = $pattribute->option_group_name;
     }
@@ -30,7 +30,7 @@ class AdminEditAttributesComponent extends Component
             'name' => 'required'
         ]);
 
-        $pattribute = OptionGroups::find($this->attribute_id);
+        $pattribute = ProductAttribute::find($this->attribute_id);
         $pattribute->option_group_name = $this->name;
         $pattribute->save();
         session()->flash('message','Attribute has been updated successfully');

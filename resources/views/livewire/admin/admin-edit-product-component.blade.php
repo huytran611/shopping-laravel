@@ -156,7 +156,7 @@
                                    <select class="form-control" wire:model="attribute">
                                        <option value="">Select Attribute</option>
                                        @foreach ($pattributes as $pattributes)
-                                            <option value="{{$pattributes->id}}">{{$pattributes->option_group_name}}</option>
+                                            <option value="{{$pattributes->id}}">{{$pattributes->attribute_name}}</option>
                                        @endforeach
                                    </select>                                
                                 </div>
@@ -167,9 +167,9 @@
 
                             @foreach ($inputs as $key=>$value)
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label">{{$pattributes->where('id',$attribute_arr[$key])->first()->option_group_name}}</label>
+                                    <label class="col-md-4 control-label">{{$pattributes->where('id',$attribute_arr[$key])->first()->attribute_name}}</label>
                                     <div class="col-md-4">
-                                        <input type="text" placeholder="{{$pattributes->where('id',$attribute_arr[$key])->first()->option_group_name}}" class="form-control input-md"  wire:model="attribute_values.{{$value}}" >{{$pattributes->where('id',$attribute_arr[$key])->first()->name}} 
+                                        <input type="text" placeholder="{{$pattributes->where('id',$attribute_arr[$key])->first()->attribute_name}}" class="form-control input-md"  wire:model="attribute_values.{{$value}}" >{{$pattributes->where('id',$attribute_arr[$key])->first()->name}} 
                                     </div>
                                     <div class="col-md-1" style="top:-30px">
                                         <button type="button" class="btn btn-danger btn-sm" wire:click.prevent="remove({{$key}})">Remove</button>
