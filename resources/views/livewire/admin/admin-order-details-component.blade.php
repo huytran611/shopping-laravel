@@ -63,6 +63,13 @@
                                                 <img src="{{asset('assets/images/products')}}/{{$item->product->image}}" alt="{{$item->product->name}}">
                                                 <div>
                                                     <a href="{{route('product.details',['slug'=>$item->product->slug])}}"><p>{{$item->product->name}}</p></a>
+                                                    @if ($item->options)
+                                                        <div>
+                                                            @foreach (unserialize($item->options) as $key=>$value)
+                                                                <p><b>{{$key}}:{{$value}}</b></p>
+                                                            @endforeach
+                                                        </div>
+                                                    @endif
                                                     <small>{{$item->product->regular_price}}đ</small>
                                                     <br>
                                                     <a href="" wire:click.prevent="delete('{{$item->rowId}}')">Xóa</a>

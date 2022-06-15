@@ -17,17 +17,22 @@
                     <div class="cart-info">
                         <img src="{{asset('assets/images/products')}}/{{$item->model->image}}" alt="{{$item->model->name}}">
                         <div>
-                            <a href="{{route('product.details',['slug'=>$item->model->slug])}}"><p>{{$item->model->name}}</p></a>
+                            <a href="{{route('product.details',['slug'=>$item->model->slug])}}"><h3>{{$item->model->name}}</h3></a>
 
                             @foreach ($item->options as $key=>$value)
                                 <div style="vertical-align: middle;width:180px;">
                                     <h5><b>{{$key}}:{{$value}}</b></h5>
                                 </div>
                             @endforeach
+                            
+                            @if ($item->model->sale_price > 0)
+                                <small style="text-decoration:2px red line-through;">{{number_format($item->model->regular_price,0,'','.')}}đ</small>
+                                <small>{{number_format($item->model->sale_price,0,'','.')}}đ</small>
+                                </div>
+                            @else
+                                <small>{{number_format($item->model->regular_price,0,'','.')}}đ</small>
+                            @endif 
 
-                            <small>{{$item->model->regular_price}}đ</small>
-                            <br>
-                            <a href="" wire:click.prevent="delete('{{$item->rowId}}')">Xóa</a>
                         </div>
                     </div>
                 </td>
@@ -37,10 +42,14 @@
                     <button class="btn-increase" wire:click.prevent="increaseQuantity('{{$item->rowId}}')">+</button>
                     <button class="btn-decrease" wire:click.prevent="decreaseQuantity('{{$item->rowId}}')">-</button>
                 </td>
-                
-                <td>{{number_format($item->subtotal,0,'','.')}}đ</td>
-
+                @if ($item->model->sale_price > 0)
+                    <td style="text-align:center">{{number_format($item->subtotal(),0,'','.')}}đ</td>
+                @else
+                    <td style="text-align:center">{{number_format($item->subtotal(),0,'','.')}}đ</td>
+                @endif
+                <td><a href="" style="margin-right:5px" wire:click.prevent="delete('{{$item->rowId}}')"><i class="fa-solid fa-trash" style="font-size:20px"></i></a></td>
             </tr>
+            
             @endforeach
         @else
             <p>Giỏ hàng trống</p>

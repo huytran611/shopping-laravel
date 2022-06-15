@@ -37,7 +37,11 @@
                 <h3 style="text-decoration:2px red line-through;">{{number_format($sproduct->regular_price,0,'','.')}}đ</h3>
                 <h3 style="margin-left: 7px">{{number_format($sproduct->sale_price,0,'','.')}}đ</h3>
               </div>
-            <button class="buy-1" wire:click.prevent="store({{$sproduct->id}},'{{$sproduct->name}}',{{$sproduct->regular_price}})">Buy Now</button>
+              @if($sproduct->sale > 0)
+                <button class="buy-1" wire:click.prevent="store({{$sproduct->id}},'{{$sproduct->name}}',{{$sproduct->regular_price}})">Buy Now</button>
+              @else
+              <button class="buy-1" wire:click.prevent="store({{$sproduct->id}},'{{$sproduct->name}}',{{$sproduct->sale_price}})">Buy Now</button>
+              @endif
           </div>
         @endforeach
       </div>

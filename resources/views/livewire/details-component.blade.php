@@ -3,7 +3,7 @@
     <div class="small-container single-product">
         <div class="row">
             <div class="col-2" wire:ignore>
-                <img src="{{asset('assets/images/products')}}/{{$product->image}}" alt="" width="100%" id="productimg">
+                <img src="{{asset('assets/images/products')}}/{{$product->image}}" alt="" width="400" id="productimg">
                 <div class="small-img-row">
                     <div class="small-img-col">
                         <img src="{{asset('assets/images/products')}}/{{$product->image}}" alt="" width="100%" class="small-img">
@@ -23,12 +23,12 @@
             <div class="col-2">
                 <h1>{{$product->name}}</h1>
                 @if ($product->sale_price > 0)
-                <div style="flex-wrap: wrap; display:flex;margin-left:100px">
-                <h3 style="text-decoration:2px red line-through;">{{number_format($product->regular_price,0,'','.')}}đ</h3>
-                <h3 style="margin-left: 5px">{{$product->sale_price}}đ</h3>
-                </div>
+                    <div style="flex-wrap: wrap; display:flex;margin-left:100px">
+                    <h3 style="text-decoration:2px red line-through;">{{number_format($product->regular_price,0,'','.')}}đ</h3>
+                    <h3 style="margin-left: 5px">{{$product->sale_price}}đ</h3>
+                    </div>
                 @else
-                <h3>{{number_format($product->regular_price,0,'','.')}}đ</h3>
+                    <h3>{{number_format($product->regular_price,0,'','.')}}đ</h3>
                 @endif 
                 <h5>Tình trạng: {{$product->stock_status}}</h5>
 
@@ -39,10 +39,12 @@
                         </div>
                         <div >
                             <select style="width:100px" wire:model="satt.{{$av->productAttribute->attribute_name}}">
+                                <option>Select</option>
                                 @foreach ($av->productAttribute->attributeValues->where('product_id',$product->id) as $pav)
-                                    <option value="{{$pav->id}}">{{$pav->value}}</option>
+                                    <option value="{{$pav->value}}">{{$pav->value}}</option>
                                 @endforeach
                             </select>
+                            @error('satt') <p style="color:red;font-size:14px">Vui lòng chọn mục này</p>@enderror
                         </div>
                     </div>
                 @endforeach
@@ -51,7 +53,11 @@
                 <button class="btn-increase" wire:click.prevent="increaseQuantity">+</button>
                 <button class="btn-decrease" wire:click.prevent="decreaseQuantity">-</button>
                 <br>
-                <a href="" class="btn" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$qty}},{{$product->regular_price}},'{{$satt['value']}}')">Thêm vào giỏ</a>
+                @if ($product->sale_price > 0)
+                    <button class="btn" type="submit" style="width: 200px" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$qty}},{{$product->sale_price}})">Thêm vào giỏ</button>
+                @else
+                    <button class="btn" type="submit" style="width: 200px" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$qty}},{{$product->regular_price}})">Thêm vào giỏ</button>
+                @endif
                 <h3>Thông tin sản phẩm</h3>
                 <p>{{$product->short_description}}</p>
             </div>
@@ -96,7 +102,6 @@
     smallimg[3].onclick = function(){
         productimg.src = smallimg[3].src;
     }
-
 
     </script>
 </div>
