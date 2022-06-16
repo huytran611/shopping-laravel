@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\AttributeValue;
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -14,7 +15,6 @@ class DetailsComponent extends Component
     public $slug;
     public $qty;
     public $satt=[];
-
     public function increaseQuantity()
     {
         $this->qty++;
@@ -46,9 +46,18 @@ class DetailsComponent extends Component
         $this->validate([
             'satt' => 'required'
         ]);
-        Cart::instance('cart')->add($product_id,$product_name,$this->qty,$product_price,$this->satt)->associate('App\Models\Product');
+
+        if(array_search("Select",$this->satt) ) //Option = "Select" => error
+        {
+            session()->flash('message','Hãy cho chúng tôi biết bạn muốn màu (size) gì!?');
+        }
+        else
+        {
+            Cart::instance('cart')->add($product_id,$product_name,$this->qty,$product_price,$this->satt)->associate('App\Models\Product');
+            return redirect()->route('product.cart');
+        }
        // session()->flash('success_message','Item added in Cart');
-        return redirect()->route('product.cart');
+        
 
     }
     public function render()

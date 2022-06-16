@@ -60,15 +60,17 @@ p{
 }
 .btn{
     display: inline-block;
-    background: #CD5C5C;
-    color: #fff;
-    padding: 8px 30px;
-    margin: 30px 0;
+    background: #f1f1f1;
+    color: #000;
+    padding: 8px 70px;
+    margin: 15px 0;
     border-radius: 30px;
     transition: background 0.5s;
+    cursor: pointer;
 }
 .btn:hover{
-    background: #563434;
+    background: #CD5C5C;
+    color:#fff;
 }
 .header{
 
@@ -97,8 +99,8 @@ p{
     max-width: 100%;
     margin: 0 auto;
     text-align: center;
-    margin-top: 30px;
-    margin-bottom: 70px;
+    margin-top: 50px;
+    margin-bottom: 30px;
     text-decoration: underline;
     text-decoration-color: #CD5C5C;
 }
@@ -280,7 +282,6 @@ ul{
     grid-template-columns: repeat(auto-fill, 310px);
     flex-wrap: wrap;
     width: 100%;
-    grid-auto-rows: 500px;
     grid-gap: 10px;
     justify-content: center;
     align-items: center;
@@ -290,6 +291,8 @@ ul{
         color:#fff;        
     }
     .content{
+    width: 300px;
+    height: 420px;
     margin: 10px;
     box-sizing: border-box;
     text-align: center;
@@ -298,6 +301,16 @@ ul{
     border-bottom-right-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: .4s;
+    }
+    .content-img{
+        height: 280px; 
+        width:250px;
+    }
+    .content-price{
+       flex-wrap: wrap;
+       display:block;
+       height: 33px;
+
     }
 
     .content:hover{
@@ -614,7 +627,9 @@ display: block;
 
   /*-----------Product Detail------------------*/
 .product-brand{
-      color: #CD5C5C
+      color: #CD5C5C;
+      font-size:16px;
+      height: 35px;
   }
 
 .single-product{
@@ -650,7 +665,6 @@ input:focus{
 
 .small-img-row{
     display: flex;
-    justify-content: space-around;
 }
 .small-img-col{
     flex-basis: 24%;

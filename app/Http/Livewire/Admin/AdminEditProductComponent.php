@@ -69,20 +69,6 @@ class AdminEditProductComponent extends Component
         }
     }
 
-    public function add()
-    {
-        if(!$this->attribute_arr->contains($this->attribute))
-        {
-            $this->inputs->push($this->$attribute);
-            $this->attribute_arr->push($this->$attribute);
-        }
-    }
-
-    public function remove($attribute)
-    {
-        unset($this->inputs[$attribute]);
-    }
-
     public function generateSlug()
     {
         $this->slug = Str::slug($this->name,'-');

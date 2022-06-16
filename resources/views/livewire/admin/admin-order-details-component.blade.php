@@ -70,17 +70,23 @@
                                                             @endforeach
                                                         </div>
                                                     @endif
-                                                    <small>{{$item->product->regular_price}}đ</small>
-                                                    <br>
-                                                    <a href="" wire:click.prevent="delete('{{$item->rowId}}')">Xóa</a>
+                                                    <div class="content-price">
+                                                        @if ($item->product->sale_price > 0)
+                                                          
+                                                            <small style="text-decoration:2px red line-through;">{{number_format($item->product->regular_price,0,'','.')}}đ</small>
+                                                            <small>{{number_format($item->product->sale_price,0,'','.')}}đ</small>
+                                                          
+                                                        @else
+                                                          <small>{{number_format($item->product->regular_price,0,'','.')}}đ</small>
+                                                        @endif
+                                                      </div>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <h5>{{$item->detail_quantity}}</h5>
                                         </td>
-                                        
-                                        <td>{{$item->product->regular_price * $item->detail_quantity}}đ</td>                     
+                                        <td>{{$order->subtotal}}</td>
                                     </tr>
                                     @endforeach
                             </table>

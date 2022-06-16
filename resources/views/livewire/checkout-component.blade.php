@@ -196,7 +196,16 @@
           @foreach (Cart::instance('cart')->content() as $item)
           <p>
             <a href="{{route('product.details',['slug'=>$item->model->slug])}}"><img src="{{asset('assets/images/products')}}/{{$item->model->image}}" alt="{{$item->model->name}}" width="60px"> {{$item->model->name}}</a> 
-            <span class="price">{{($item->model->regular_price) * ($item->qty)}}đ</span>
+            <div class="content-price">
+              @if ($item->model->sale_price > 0)
+                
+                  <small style="text-decoration:2px red line-through;">{{number_format($item->model->regular_price,0,'','.')}}đ</small>
+                  <small>{{number_format($item->model->sale_price,0,'','.')}}đ</small>
+                
+              @else
+                <small>{{number_format($item->model->regular_price,0,'','.')}}đ</small>
+              @endif
+            </div>
             <span class="price" style="margin-right:20px"> x{{$item->qty}}</span> 
           </p>
           @endforeach

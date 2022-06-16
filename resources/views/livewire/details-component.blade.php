@@ -21,16 +21,16 @@
                 </div>
             </div>
             <div class="col-2">
-                <h1>{{$product->name}}</h1>
+                <h2>{{$product->name}}</h2>
                 @if ($product->sale_price > 0)
-                    <div style="flex-wrap: wrap; display:flex;margin-left:100px">
+                    <div style="flex-wrap: wrap; display:flex;">
                     <h3 style="text-decoration:2px red line-through;">{{number_format($product->regular_price,0,'','.')}}đ</h3>
-                    <h3 style="margin-left: 5px">{{$product->sale_price}}đ</h3>
+                    <h3 style="margin-left: 5px">{{number_format($product->sale_price,0,'','.')}}đ</h3>
                     </div>
                 @else
                     <h3>{{number_format($product->regular_price,0,'','.')}}đ</h3>
                 @endif 
-                <h5>Tình trạng: {{$product->stock_status}}</h5>
+                <h4>Tình trạng: {{$product->stock_status}}</h4>
 
                 @foreach ($product->attributeValues->unique('product_attribute_id') as $av)
                     <div style="margin-top:20px">
@@ -39,69 +39,65 @@
                         </div>
                         <div >
                             <select style="width:100px" wire:model="satt.{{$av->productAttribute->attribute_name}}">
-                                <option>Select</option>
+                                <option value="Select" selected="true">Select</option>
                                 @foreach ($av->productAttribute->attributeValues->where('product_id',$product->id) as $pav)
                                     <option value="{{$pav->value}}">{{$pav->value}}</option>
                                 @endforeach
                             </select>
-                            @error('satt') <p style="color:red;font-size:14px">Vui lòng chọn mục này</p>@enderror
+                            @error('satt') <p style="color:red;font-size:14px">Lựa chọn không phù hợp</p>@enderror
                         </div>
                     </div>
                 @endforeach
+                @if (Session::has('message'))
+                    <p style="color: red;font-size:14px">{{Session::get('message')}}</p>
+                @endif
                 <h5 style="margin-top:20px">Số lượng</h5>
                 <input class="input-cart" type="text" value="0" wire:model="qty">
                 <button class="btn-increase" wire:click.prevent="increaseQuantity">+</button>
                 <button class="btn-decrease" wire:click.prevent="decreaseQuantity">-</button>
                 <br>
                 @if ($product->sale_price > 0)
-                    <button class="btn" type="submit" style="width: 200px" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$qty}},{{$product->sale_price}})">Thêm vào giỏ</button>
+                    <a class="btn" type="submit"  wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$qty}},{{$product->sale_price}})">Thêm vào giỏ</a>
                 @else
-                    <button class="btn" type="submit" style="width: 200px" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$qty}},{{$product->regular_price}})">Thêm vào giỏ</button>
+                    <a class="btn" type="submit"  wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$qty}},{{$product->regular_price}})">Thêm vào giỏ</a>
                 @endif
                 <h3>Thông tin sản phẩm</h3>
                 <p>{{$product->short_description}}</p>
             </div>
         </div>
-            <h2 class="categories">Sản phẩm liên quan</h2>
+    </div>
+    <h2 class="categories">Sản phẩm tương tự</h2>
             <div class="gallery">
                 @foreach ($related_products as $r_products)
                 <div class="content">
                     <a href="{{route('product.details',['slug'=>$r_products->slug])}}">
-                    <img src="{{asset('assets/images/products')}}/{{$r_products->image}}" style="height: 400px;" alt="{{$r_products->name}}">
+                    <img src="{{asset('assets/images/products')}}/{{$r_products->image}}" class="content-img" alt="{{$r_products->name}}">
                     </a>
                     <a href="{{route('product.details',['slug'=>$r_products->slug])}}">
                     <h3 class="product-brand">{{$r_products->name}}</h3>
                 </a>
-                @if ($r_products->sale_price > 0)
-                    <div style="flex-wrap: wrap; display:flex;margin-left:100px">
-                        <h3 style="text-decoration:2px red line-through;">{{$r_products->regular_price}}đ</h3>
-                        <h3 style="margin-left: 5px">{{$r_products->sale_price}}đ</h3>
-                    </div>
-                @else
-                    <h3>{{$r_products->regular_price}}đ</span><span class="actual-price"></h3>
-                @endif 
-                <button class="buy-1" wire:click.prevent="store({{$r_products->id}},'{{$r_products->name}}',{{$r_products->regular_price}})">Buy Now</button>
+                <div class="content-price">
+                    @if ($r_products->sale_price > 0)
+                        
+                            <h3 style="text-decoration:2px red line-through;">{{$r_products->regular_price}}đ</h3>
+                            <h3>{{$r_products->sale_price}}đ</h3>
+                        
+                    @else
+                        <h3>{{$r_products->regular_price}}đ</span><span class="actual-price"></h3>
+                    @endif 
+                </div>
+                <a class="btn" href="{{route('product.details',['slug'=>$r_products->slug])}}">Buy Now</a>
                 </div>
                 @endforeach    
             </div>
-    </div>
     <script>
-        //Single Product JS
-    var productimg = document.getElementById("productimg");
+        //Gallery
     var smallimg = document.getElementsByClassName("small-img");
 
-    smallimg[0].onclick = function(){
-        productimg.src = smallimg[0].src;
-    }
-    smallimg[1].onclick = function(){
-        productimg.src = smallimg[1].src;
-    }
-    smallimg[2].onclick = function(){
-        productimg.src = smallimg[2].src;
-    }
-    smallimg[3].onclick = function(){
-        productimg.src = smallimg[3].src;
-    }
-
+    for(let i = 0; i <= smallimg.length; i++ )
+    {
+        smallimg[i].onclick = function(){
+        productimg.src = smallimg[i].src;
+    }};
     </script>
 </div>

@@ -20,14 +20,21 @@
             @foreach ($products as $product)
             <div class="content">
                   <a href="{{route('product.details',['slug'=>$product->slug])}}">
-                    <img src="{{asset('assets/images/products')}}/{{$product->image}}" style="height: 400px; width: 290px" alt="{{$product->name}}">
+                    <img src="{{asset('assets/images/products')}}/{{$product->image}}" class="content-img" alt="{{$product->name}}">
                   </a>
                   <a href="{{route('product.details',['slug'=>$product->slug])}}">
                     <h3 class="product-brand">{{$product->name}}</h3>
                 </a>
-                <h3 >{{number_format($product->regular_price,0,'','.')}}đ</h3>
-                <button class="buy-1" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->regular_price}})">Add to cart</button>
-            </div>
+                <div class="content-price">
+                  @if ($product->sale_price > 0)
+                      <h3 style="text-decoration:2px red line-through;">{{number_format($product->regular_price,0,'','.')}}đ</h3>
+                      <h3>{{number_format($product->sale_price,0,'','.')}}đ</h3>
+                  @else
+                    <h3>{{number_format($product->regular_price,0,'','.')}}đ</h3>
+                  @endif
+                </div>
+                <a class="btn" href="{{route('product.details',['slug'=>$product->slug])}}">Buy Now</a>
+              </div>
             @endforeach
         </div>
         <h3 style="font-style: bold; text-align: center; margin-top:20px">Bạn đã xem hết!</h3>

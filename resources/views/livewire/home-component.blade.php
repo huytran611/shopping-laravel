@@ -28,20 +28,16 @@
         @foreach ($sproducts as $sproduct)
           <div class="content">
               <a href="{{route('product.details',['slug'=>$sproduct->slug])}}">
-                <img src="{{asset('assets/images/products')}}/{{$sproduct->image}}" style="height: 400px; width:290px"  alt="{{$sproduct->name}}">
+                <img src="{{asset('assets/images/products')}}/{{$sproduct->image}}" class="content-img"  alt="{{$sproduct->name}}">
               </a>
               <a href="{{route('product.details',['slug'=>$sproduct->slug])}}">
                 <h3 class="product-brand">{{$sproduct->name}}</h3>
               </a>
-              <div style="flex-wrap: wrap; display:flex;margin-left:100px">
+              <div class="content-price">
                 <h3 style="text-decoration:2px red line-through;">{{number_format($sproduct->regular_price,0,'','.')}}đ</h3>
-                <h3 style="margin-left: 7px">{{number_format($sproduct->sale_price,0,'','.')}}đ</h3>
+                <h3>{{number_format($sproduct->sale_price,0,'','.')}}đ</h3>
               </div>
-              @if($sproduct->sale > 0)
-                <button class="buy-1" wire:click.prevent="store({{$sproduct->id}},'{{$sproduct->name}}',{{$sproduct->regular_price}})">Buy Now</button>
-              @else
-              <button class="buy-1" wire:click.prevent="store({{$sproduct->id}},'{{$sproduct->name}}',{{$sproduct->sale_price}})">Buy Now</button>
-              @endif
+              <a class="btn" href="{{route('product.details',['slug'=>$sproduct->slug])}}">Buy Now</a>
           </div>
         @endforeach
       </div>
@@ -53,13 +49,22 @@
   @foreach ($lproducts as $lproduct)
     <div class="content">
         <a href="{{route('product.details',['slug'=>$lproduct->slug])}}">
-          <img src="{{asset('assets/images/products')}}/{{$lproduct->image}}" style="height: 400px; width:290px"  alt="{{$lproduct->name}}">
+          <img src="{{asset('assets/images/products')}}/{{$lproduct->image}}" class="content-img"  alt="{{$lproduct->name}}">
         </a>
         <a href="{{route('product.details',['slug'=>$lproduct->slug])}}">
           <h3 class="product-brand">{{$lproduct->name}}</h3>
         </a>
-      <h3>{{number_format($lproduct->regular_price,0,'','.')}}đ</h3>
-      <button class="buy-1" wire:click.prevent="store({{$lproduct->id}},'{{$lproduct->name}}',{{$lproduct->regular_price}})">Buy Now</button>
+        <div class="content-price">
+          @if ($lproduct->sale_price > 0)
+            
+              <h3 style="text-decoration:2px red line-through;">{{number_format($lproduct->regular_price,0,'','.')}}đ</h3>
+              <h3>{{number_format($lproduct->sale_price,0,'','.')}}đ</h3>
+            
+          @else
+            <h3>{{number_format($lproduct->regular_price,0,'','.')}}đ</h3>
+          @endif
+        </div>
+      <a class="btn" href="{{route('product.details',['slug'=>$lproduct->slug])}}">Buy Now</a>
     </div>
   @endforeach
   </div>

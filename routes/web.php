@@ -35,6 +35,7 @@ use App\Http\Livewire\HomeComponent;
 use App\Http\Livewire\KidShop;
 use App\Http\Livewire\MaleShop;
 use App\Http\Livewire\NewsShop;
+use App\Http\Livewire\SalePageComponent;
 use App\Http\Livewire\SearchComponent;
 use App\Http\Livewire\ThankyouComponent;
 use App\Http\Livewire\User\UserChangePasswordComponent;
@@ -120,12 +121,6 @@ Route::middleware(['auth:sanctum', 'verified','authadmin'])->group(function(){
 
 Route::get('/news', NewsShop::class);
 
-Route::get('/men',MaleShop::class);
-
-Route::get('/women', FemaleShop::class);
-
-Route::get('/kid',KidShop::class);
-
 Route::get('/accessories',AccesoriesShop::class);
 
 Route::get('/product-category/{category_slug}',CategoryComponent::class)->name('product.category');
@@ -137,6 +132,8 @@ Route::get('/checkout',CheckoutComponent::class)->name('checkout');
 Route::get('/thank-you',ThankyouComponent::class)->name('thankyou');
 
 Route::get('/about-us', LivewireAboutUsComponent::class)->name('about');
+
+Route::get('/sale',SalePageComponent::class)->name('sale');
 
 //--------------------------------------
 
