@@ -19,8 +19,8 @@ class AdminEditCouponComponent extends Component
         $coupon = Coupon::find($coupon_id);
         $this->code = $coupon->code;
         $this->type = $coupon->type;
-        $this->value = $coupon->value;
-        $this->cart_value = $coupon->cart_value;
+        $this->value = number_format($coupon->value,0,'','');
+        $this->cart_value = number_format($coupon->cart_value,0,'','');
         $this->coupon_id = $coupon->id;
         $this->expiry_date = $coupon->expiry_date;
     }
@@ -28,7 +28,6 @@ class AdminEditCouponComponent extends Component
     public function updated($fields)
     {
         $this->validateOnly($fields,[
-            'code' => 'required|unique:coupons',
             'type' => 'required',
             'value' => 'required|numeric',
             'cart_value' => 'required|numeric',
@@ -39,7 +38,6 @@ class AdminEditCouponComponent extends Component
     public function updateCoupon()
     {
         $this->validate([
-            'code' => 'required|unique:coupons',
             'type' => 'required',
             'value' => 'required|numeric',
             'cart_value' => 'required|numeric',

@@ -39,7 +39,7 @@
         @endforeach
       </div>
   @endif
-  <a href="/sale"><h3 style="text-align: center; font-style:italic;margin-bottom:70px;margin-top:20px">Xem thêm sản phẩm -></h3></a>
+  <a href="/sale"><h3 style="text-align: center; font-style:italic;margin-bottom:70px;margin-top:20px">Xem thêm sản phẩm <i class="fa-solid fa-arrow-right"></i></h3></a>
   <!--Products List-->
   <h3 style="font-style:italic; padding-top:20px; padding-left:100px">NEWEST PRODUCTS</h3>
   <div class="gallery">
@@ -65,7 +65,7 @@
     </div>
   @endforeach
   </div>
-  <a href="/news"><h3 style="text-align: center; font-style:italic;margin-bottom:70px;margin-top:20px">Xem thêm sản phẩm -></h3></a>
+  <a href="/news"><h3 style="text-align: center; font-style:italic;margin-bottom:70px;margin-top:20px">Xem thêm sản phẩm <i class="fa-solid fa-arrow-right"></i></h3></a>
   <script> 
   let slideIndex = 1;
   showSlides(slideIndex);

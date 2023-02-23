@@ -46,7 +46,6 @@ class DetailsComponent extends Component
         $this->validate([
             'satt' => 'required'
         ]);
-
         if(array_search("Select",$this->satt) ) //Option = "Select" => error
         {
             session()->flash('message','Hãy cho chúng tôi biết bạn muốn màu (size) gì!?');

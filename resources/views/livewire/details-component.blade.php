@@ -30,8 +30,9 @@
                 @else
                     <h3>{{number_format($product->regular_price,0,'','.')}}đ</h3>
                 @endif 
-                <h4>Tình trạng: {{$product->stock_status}}</h4>
-
+                @if ($product->stock_status == 'hết hàng')
+                    <h4 style="color:red">{{$product->stock_status}}</h4>
+                @endif
                 @foreach ($product->attributeValues->unique('product_attribute_id') as $av)
                     <div style="margin-top:20px">
                         <div>
@@ -51,15 +52,20 @@
                 @if (Session::has('message'))
                     <p style="color: red;font-size:14px">{{Session::get('message')}}</p>
                 @endif
+
                 <h5 style="margin-top:20px">Số lượng</h5>
                 <input class="input-cart" type="text" value="0" wire:model="qty">
                 <button class="btn-increase" wire:click.prevent="increaseQuantity">+</button>
                 <button class="btn-decrease" wire:click.prevent="decreaseQuantity">-</button>
                 <br>
-                @if ($product->sale_price > 0)
-                    <a class="btn" type="submit"  wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$qty}},{{$product->sale_price}})">Thêm vào giỏ</a>
-                @else
-                    <a class="btn" type="submit"  wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$qty}},{{$product->regular_price}})">Thêm vào giỏ</a>
+                @if ($product->stock_status == "hết hàng")
+                    <a class="btn">Thêm vào giỏ</a>
+                @elseif ($product->stock_status == "còn hàng")
+                    @if ($product->sale_price > 0)
+                        <a class="btn" type="submit"  wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$qty}},{{$product->sale_price}})">Thêm vào giỏ</a>
+                    @else
+                        <a class="btn" type="submit"  wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$qty}},{{$product->regular_price}})">Thêm vào giỏ</a>
+                    @endif
                 @endif
                 <h3>Thông tin sản phẩm</h3>
                 <p>{{$product->short_description}}</p>

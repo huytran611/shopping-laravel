@@ -306,8 +306,7 @@ ul{
     .content-price{
        flex-wrap: wrap;
        display:block;
-       height: 33px;
-
+       height: 35px;
     }
 
     .content:hover{

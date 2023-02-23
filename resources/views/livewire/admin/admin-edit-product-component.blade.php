@@ -78,8 +78,8 @@
                                 <label class="col-md-4 control-label">Stock</label>
                                 <div class="col-md-4">
                                    <select class="form-control"  wire:model="stock_status">
-                                       <option value="instock">InStock</option>
-                                       <option value="outofstock">Out Of Stock</option>
+                                       <option value="còn hàng">Còn hàng</option>
+                                       <option value="hết hàng">Hết hàng</option>
                                    </select>
                                    @error('stock_status') <p class="text-danger">{{$message}}</p>@enderror
                                 </div>

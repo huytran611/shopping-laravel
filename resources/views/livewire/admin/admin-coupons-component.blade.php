@@ -34,12 +34,12 @@
                                         <td>{{$coupon->code}}</td>
                                         <td>{{$coupon->type}}</td>
                                         @if($coupon->type == 'fixed')
-                                            <td>{{$coupon->value}}đ</td>
+                                            <td>{{number_format($coupon->value,0,'','.')}}đ</td>
                                         @else
-                                            <td>{{$coupon->value}} %</td>
+                                            <td>{{number_format($coupon->value,0,'','.')/1}}%</td>
                                         @endif
-                                        <td>{{$coupon->cart_value}}</td>
-                                        <td>{{$coupon->expiry_date}}</td>
+                                        <td>{{number_format($coupon->cart_value,0,'','.')}}đ</td>
+                                        <td>{{date("d-m-Y",strtotime($coupon->expiry_date))}}</td>
                                         <td>
                                             <a href="{{route('admin.editcoupon',['coupon_id'=>$coupon->id])}}"> <i class="fa fa-edit fa-2x text-info"></i></a>
                                             <a href="#" onclick="confirm('Are you sure want to delete this coupon?') || event.stopImmediatePropagation()" wire:click.prevent="deleteCoupon({{$coupon->id}})" style="margin-left: 10px;"><i class="fa fa-times fa-2x text-danger"></i></a>
